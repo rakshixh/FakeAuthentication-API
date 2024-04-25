@@ -22,6 +22,9 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Fake Authentication API!");
 });
 
+const routes = require("./Routes/Routes");
+app.use("/api", routes);
+
 // start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
