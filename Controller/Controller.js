@@ -104,7 +104,6 @@ apiRoutes.get("/admins", (req, res) => {
 apiRoutes.post("/login", (req, res) => {
   try {
     const { username, password } = req.body;
-
     // Find the user
     let user = jsonData.guests.find((user) => user.username === username);
     if (!user) {
