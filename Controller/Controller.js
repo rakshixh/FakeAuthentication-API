@@ -99,4 +99,48 @@ apiRoutes.get("/admins", (req, res) => {
     });
   }
 });
+
+// Route to login the users
+apiRoutes.post("/login", (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    // Find the user
+    let user = jsonData.guests.find((user) => user.username === username);
+    if (!user) {
+      user = jsonData.users.find((user) => user.username === username);
+      if (!user) {
+        user = jsonData.admins.find((user) => user.username === username);
+      }
+    }
+
+    if (!user || user.password !== password) {
+      res.status(200).json({
+        statusCode: 401,
+        status: false,
+        message: "Invalid username or password",
+      });
+      return;
+    }
+
+    // User found and password matched
+    res.status(200).json({
+      statusCode: 200,
+      status: true,
+      message: "Login successful",
+      user: {
+        username: user.username,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    res.status(200).json({
+      statusCode: 500,
+      status: false,
+      message: "Internal server error",
+    });
+  }
+});
+
 module.exports = apiRoutes;
