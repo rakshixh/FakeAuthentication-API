@@ -30,12 +30,19 @@ apiRoutes.get("/users", (req, res) => {
     );
     const response = {
       statusCode: 200,
+      status: true,
       message: "All users fetched successfully",
       users: allUsers,
     };
     res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res
+      .status(200)
+      .json({
+        statusCode: 500,
+        status: false,
+        message: "Internal server error",
+      });
   }
 });
 
