@@ -20,9 +20,8 @@ updateData(); // Initial update
 const interval = setInterval(updateData, 60 * 60 * 1000);
 
 // Route to get all users
-apiRoutes.get("/users", (req, res) => {
+apiRoutes.get("/allusers", (req, res) => {
   try {
-    // Combine all users from jsonData
     const allUsers = [].concat(
       jsonData.guests,
       jsonData.users,
@@ -36,22 +35,68 @@ apiRoutes.get("/users", (req, res) => {
     };
     res.status(200).json(response);
   } catch (error) {
-    res
-      .status(200)
-      .json({
-        statusCode: 500,
-        status: false,
-        message: "Internal server error",
-      });
+    res.status(200).json({
+      statusCode: 500,
+      status: false,
+      message: "Internal server error",
+    });
   }
 });
 
 // Route to get only Guest Users
 apiRoutes.get("/guests", (req, res) => {
   try {
-    res.status(200).json(jsonData.guests);
+    const response = {
+      statusCode: 200,
+      status: true,
+      message: "All guest users fetched successfully",
+      guests: jsonData.guests,
+    };
+    res.status(200).json(response);
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(200).json({
+      statusCode: 500,
+      status: false,
+      message: "Internal server error",
+    });
+  }
+});
+
+// Route to get only normal Users
+apiRoutes.get("/users", (req, res) => {
+  try {
+    const response = {
+      statusCode: 200,
+      status: true,
+      message: "All normal users fetched successfully",
+      guests: jsonData.users,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(200).json({
+      statusCode: 500,
+      status: false,
+      message: "Internal server error",
+    });
+  }
+});
+
+// Route to get only Admin Users
+apiRoutes.get("/admins", (req, res) => {
+  try {
+    const response = {
+      statusCode: 200,
+      status: true,
+      message: "All admin users fetched successfully",
+      guests: jsonData.admins,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(200).json({
+      statusCode: 500,
+      status: false,
+      message: "Internal server error",
+    });
   }
 });
 module.exports = apiRoutes;
