@@ -1,0 +1,19 @@
+{
+  "name": "fakeauthentication-api",
+  "version": "1.0.0",
+  "description": "This is a fake authentication api that can be used for implementing authentication such as login or sign up to the frontend applications.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rakshixh/FakeAuthentication-API.git"
+  },
+  "author": "Rakshith Acharya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rakshixh/FakeAuthentication-API/issues"
+  },
+  "homepage": "https://github.com/rakshixh/FakeAuthentication-API#readme"
+}
