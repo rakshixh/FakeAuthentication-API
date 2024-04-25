@@ -28,7 +28,21 @@ apiRoutes.get("/users", (req, res) => {
       jsonData.users,
       jsonData.admins
     );
-    res.status(200).json(allUsers);
+    const response = {
+      statusCode: 200,
+      message: "All users fetched successfully",
+      users: allUsers,
+    };
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// Route to get only Guest Users
+apiRoutes.get("/guests", (req, res) => {
+  try {
+    res.status(200).json(jsonData.guests);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
