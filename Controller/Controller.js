@@ -31,7 +31,7 @@ apiRoutes.get("/allusers", (req, res) => {
       statusCode: 200,
       status: true,
       message: "All users fetched successfully",
-      users: allUsers,
+      allUsers: allUsers,
     };
     res.status(200).json(response);
   } catch (error) {
@@ -69,7 +69,7 @@ apiRoutes.get("/users", (req, res) => {
       statusCode: 200,
       status: true,
       message: "All normal users fetched successfully",
-      guests: jsonData.users,
+      normalUsers: jsonData.users,
     };
     res.status(200).json(response);
   } catch (error) {
@@ -88,7 +88,7 @@ apiRoutes.get("/admins", (req, res) => {
       statusCode: 200,
       status: true,
       message: "All admin users fetched successfully",
-      guests: jsonData.admins,
+      admins: jsonData.admins,
     };
     res.status(200).json(response);
   } catch (error) {
