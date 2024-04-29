@@ -5,10 +5,7 @@ const favicon = require("serve-favicon");
 const path = require("path");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
-const connectDB = require("./config/db");
 
-// connect to the database
-connectDB();
 // create our express app
 const app = express();
 
@@ -33,5 +30,5 @@ app.use("/api", routes);
 // start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  console.log(`Fake Authentication API server is running on port: ${PORT}`);
 });
