@@ -1,9 +1,11 @@
 const express = require("express");
 const apiRoutes = express.Router();
 const User = require("../models/staticUsers");
+const connectDB = require("../config/db");
 
 // Route to get all users data
 apiRoutes.get("/allusers", async (req, res) => {
+  await connectDB();
   try {
     const allUsers = await User.find();
     const response = {
@@ -24,6 +26,7 @@ apiRoutes.get("/allusers", async (req, res) => {
 
 // Route to get only Guest Users
 apiRoutes.get("/guests", async (req, res) => {
+  await connectDB();
   try {
     const guests = await User.find({ role: "guest" });
     const response = {
@@ -44,6 +47,7 @@ apiRoutes.get("/guests", async (req, res) => {
 
 // Route to get only Admins Users
 apiRoutes.get("/admins", async (req, res) => {
+  await connectDB();
   try {
     const admins = await User.find({ role: "admin" });
     const response = {
@@ -64,6 +68,7 @@ apiRoutes.get("/admins", async (req, res) => {
 
 // Route to get only Normal Users
 apiRoutes.get("/users", async (req, res) => {
+  await connectDB();
   try {
     const users = await User.find({ role: "user" });
     const response = {
@@ -84,6 +89,7 @@ apiRoutes.get("/users", async (req, res) => {
 
 // Route to login the users
 apiRoutes.post("/login", async (req, res) => {
+  await connectDB();
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username: username });
