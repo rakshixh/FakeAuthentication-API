@@ -1,80 +1,392 @@
-{
-  "guests": [
-    {
-      "username": "guest1",
-      "password": "Guest1!",
-      "email": "guest1@example.com",
-      "role": "guest"
-    },
-    {
-      "username": "guest2",
-      "password": "Guest2!",
-      "email": "guest2@example.com",
-      "role": "guest"
-    },
-    {
-      "username": "guest3",
-      "password": "Guest3!",
-      "email": "guest3@example.com",
-      "role": "guest"
-    },
-    {
-      "username": "guest4",
-      "password": "Guest4!",
-      "email": "guest4@example.com",
-      "role": "guest"
+[
+  {
+    "username": "john_doe",
+    "password": "John123!",
+    "email": "john@gmail.com",
+    "role": "guest",
+    "name": "John Doe",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York City",
+      "state": "NY",
+      "zipcode": "10001"
     }
-  ],
-  "users": [
-    {
-      "username": "user1",
-      "password": "User1!",
-      "email": "user1@example.com",
-      "role": "user"
-    },
-    {
-      "username": "user2",
-      "password": "User2!",
-      "email": "user2@example.com",
-      "role": "user"
-    },
-    {
-      "username": "user3",
-      "password": "User3!",
-      "email": "user3@example.com",
-      "role": "user"
-    },
-    {
-      "username": "user4",
-      "password": "User4!",
-      "email": "user4@example.com",
-      "role": "user"
+  },
+  {
+    "username": "mary_smith",
+    "password": "Mary456!",
+    "email": "mary@yahoo.com",
+    "role": "guest",
+    "name": "Mary Smith",
+    "address": {
+      "street": "456 Elm St",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zipcode": "90001"
     }
-  ],
-  "admins": [
-    {
-      "username": "admin1",
-      "password": "Admin1!",
-      "email": "admin1@example.com",
-      "role": "admin"
-    },
-    {
-      "username": "admin2",
-      "password": "Admin2!",
-      "email": "admin2@example.com",
-      "role": "admin"
-    },
-    {
-      "username": "admin3",
-      "password": "Admin3!",
-      "email": "admin3@example.com",
-      "role": "admin"
-    },
-    {
-      "username": "admin4",
-      "password": "Admin4!",
-      "email": "admin4@example.com",
-      "role": "admin"
+  },
+  {
+    "username": "alex_johnson",
+    "password": "Alex789!",
+    "email": "alex@outlook.com",
+    "role": "guest",
+    "name": "Alex Johnson",
+    "address": {
+      "street": "789 Pine St",
+      "city": "Chicago",
+      "state": "IL",
+      "zipcode": "60601"
     }
-  ]
-}
+  },
+  {
+    "username": "sarah_brown",
+    "password": "Sarah10!",
+    "email": "sarah@gmail.com",
+    "role": "guest",
+    "name": "Sarah Brown",
+    "address": {
+      "street": "321 Oak St",
+      "city": "Houston",
+      "state": "TX",
+      "zipcode": "77001"
+    }
+  },
+  {
+    "username": "mark_wilson",
+    "password": "Mark11!",
+    "email": "mark@outlook.com",
+    "role": "guest",
+    "name": "Mark Wilson",
+    "address": {
+      "street": "123 Walnut St",
+      "city": "Philadelphia",
+      "state": "PA",
+      "zipcode": "19019"
+    }
+  },
+  {
+    "username": "emily_thomas",
+    "password": "Emily12!",
+    "email": "emily@gmail.com",
+    "role": "guest",
+    "name": "Emily Thomas",
+    "address": {
+      "street": "456 Maple St",
+      "city": "Phoenix",
+      "state": "AZ",
+      "zipcode": "85001"
+    }
+  },
+  {
+    "username": "michael_lee",
+    "password": "Michael13!",
+    "email": "michael@yahoo.com",
+    "role": "guest",
+    "name": "Michael Lee",
+    "address": {
+      "street": "789 Cedar St",
+      "city": "San Antonio",
+      "state": "TX",
+      "zipcode": "78201"
+    }
+  },
+  {
+    "username": "olivia_miller",
+    "password": "Olivia14!",
+    "email": "olivia@outlook.com",
+    "role": "guest",
+    "name": "Olivia Miller",
+    "address": {
+      "street": "321 Birch St",
+      "city": "San Diego",
+      "state": "CA",
+      "zipcode": "92101"
+    }
+  },
+  {
+    "username": "william_taylor",
+    "password": "William15!",
+    "email": "william@gmail.com",
+    "role": "guest",
+    "name": "William Taylor",
+    "address": {
+      "street": "123 Cedar St",
+      "city": "Dallas",
+      "state": "TX",
+      "zipcode": "75201"
+    }
+  },
+  {
+    "username": "emma_anderson",
+    "password": "Emma16!",
+    "email": "emma@gmail.com",
+    "role": "guest",
+    "name": "Emma Anderson",
+    "address": {
+      "street": "456 Maple St",
+      "city": "San Francisco",
+      "state": "CA",
+      "zipcode": "94101"
+    }
+  },
+  {
+    "username": "james_smith",
+    "password": "James123!",
+    "email": "james@gmail.com",
+    "role": "admin",
+    "name": "James Smith",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York City",
+      "state": "New York",
+      "zipcode": "10001"
+    }
+  },
+  {
+    "username": "elena_kovacs",
+    "password": "Elena456!",
+    "email": "elena@yahoo.com",
+    "role": "admin",
+    "name": "Elena Kovács",
+    "address": {
+      "street": "456 Elm St",
+      "city": "Budapest",
+      "state": "Budapest",
+      "zipcode": "1051"
+    }
+  },
+  {
+    "username": "muhammad_ali",
+    "password": "Muhammad789!",
+    "email": "muhammad@outlook.com",
+    "role": "admin",
+    "name": "Muhammad Ali",
+    "address": {
+      "street": "789 Pine St",
+      "city": "Karachi",
+      "state": "Sindh",
+      "zipcode": "74000"
+    }
+  },
+  {
+    "username": "maria_garcia",
+    "password": "Maria10!",
+    "email": "maria@gmail.com",
+    "role": "admin",
+    "name": "Maria García",
+    "address": {
+      "street": "321 Oak St",
+      "city": "Madrid",
+      "state": "Madrid",
+      "zipcode": "28001"
+    }
+  },
+  {
+    "username": "pavel_novak",
+    "password": "Pavel11!",
+    "email": "pavel@outlook.com",
+    "role": "admin",
+    "name": "Pavel Novák",
+    "address": {
+      "street": "123 Walnut St",
+      "city": "Prague",
+      "state": "Prague",
+      "zipcode": "110 00"
+    }
+  },
+  {
+    "username": "akari_yamamoto",
+    "password": "Akari12!",
+    "email": "akari@gmail.com",
+    "role": "admin",
+    "name": "Akari Yamamoto",
+    "address": {
+      "street": "456 Maple St",
+      "city": "Tokyo",
+      "state": "Tokyo",
+      "zipcode": "100-0004"
+    }
+  },
+  {
+    "username": "dmitri_nikolov",
+    "password": "Dmitri13!",
+    "email": "dmitri@yahoo.com",
+    "role": "admin",
+    "name": "Dmitri Nikolov",
+    "address": {
+      "street": "789 Cedar St",
+      "city": "Moscow",
+      "state": "Moscow",
+      "zipcode": "119146"
+    }
+  },
+  {
+    "username": "sofia_kovalenko",
+    "password": "Sofia14!",
+    "email": "sofia@outlook.com",
+    "role": "admin",
+    "name": "Sofia Kovalenko",
+    "address": {
+      "street": "321 Birch St",
+      "city": "Kiev",
+      "state": "Kiev",
+      "zipcode": "02000"
+    }
+  },
+  {
+    "username": "matteo_rossi",
+    "password": "Matteo15!",
+    "email": "matteo@gmail.com",
+    "role": "admin",
+    "name": "Matteo Rossi",
+    "address": {
+      "street": "123 Cedar St",
+      "city": "Rome",
+      "state": "Lazio",
+      "zipcode": "00184"
+    }
+  },
+  {
+    "username": "lucia_gomez",
+    "password": "Lucia16!",
+    "email": "lucia@gmail.com",
+    "role": "admin",
+    "name": "Lucía Gómez",
+    "address": {
+      "street": "456 Maple St",
+      "city": "Barcelona",
+      "state": "Catalonia",
+      "zipcode": "08001"
+    }
+  },
+  {
+    "username": "michael_johnson",
+    "password": "Michael123!",
+    "email": "michael@gmail.com",
+    "role": "user",
+    "name": "Michael Johnson",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York City",
+      "state": "New York",
+      "zipcode": "10001"
+    }
+  },
+  {
+    "username": "maria_gonzalez",
+    "password": "Maria456!",
+    "email": "maria@yahoo.com",
+    "role": "user",
+    "name": "Maria Gonzalez",
+    "address": {
+      "street": "456 Elm St",
+      "city": "Los Angeles",
+      "state": "California",
+      "zipcode": "90001"
+    }
+  },
+  {
+    "username": "ali_khan",
+    "password": "Ali789!",
+    "email": "ali@outlook.com",
+    "role": "user",
+    "name": "Ali Khan",
+    "address": {
+      "street": "789 Pine St",
+      "city": "Karachi",
+      "state": "Sindh",
+      "zipcode": "74000"
+    }
+  },
+  {
+    "username": "luis_rodriguez",
+    "password": "Luis10!",
+    "email": "luis@gmail.com",
+    "role": "user",
+    "name": "Luis Rodríguez",
+    "address": {
+      "street": "321 Oak St",
+      "city": "Madrid",
+      "state": "Madrid",
+      "zipcode": "28001"
+    }
+  },
+  {
+    "username": "martin_novak",
+    "password": "Martin11!",
+    "email": "martin@outlook.com",
+    "role": "user",
+    "name": "Martin Novák",
+    "address": {
+      "street": "123 Walnut St",
+      "city": "Prague",
+      "state": "Prague",
+      "zipcode": "110 00"
+    }
+  },
+  {
+    "username": "yuki_takahashi",
+    "password": "Yuki12!",
+    "email": "yuki@gmail.com",
+    "role": "user",
+    "name": "Yuki Takahashi",
+    "address": {
+      "street": "456 Maple St",
+      "city": "Tokyo",
+      "state": "Tokyo",
+      "zipcode": "100-0004"
+    }
+  },
+  {
+    "username": "oleg_petrov",
+    "password": "Oleg13!",
+    "email": "oleg@yahoo.com",
+    "role": "user",
+    "name": "Oleg Petrov",
+    "address": {
+      "street": "789 Cedar St",
+      "city": "Moscow",
+      "state": "Moscow",
+      "zipcode": "119146"
+    }
+  },
+  {
+    "username": "kateryna_kovalenko",
+    "password": "Kateryna14!",
+    "email": "kateryna@outlook.com",
+    "role": "user",
+    "name": "Kateryna Kovalenko",
+    "address": {
+      "street": "321 Birch St",
+      "city": "Kiev",
+      "state": "Kiev",
+      "zipcode": "02000"
+    }
+  },
+  {
+    "username": "giuseppe_russo",
+    "password": "Giuseppe15!",
+    "email": "giuseppe@gmail.com",
+    "role": "user",
+    "name": "Giuseppe Russo",
+    "address": {
+      "street": "123 Cedar St",
+      "city": "Rome",
+      "state": "Lazio",
+      "zipcode": "00184"
+    }
+  },
+  {
+    "username": "cristina_gomez",
+    "password": "Cristina16!",
+    "email": "cristina@gmail.com",
+    "role": "user",
+    "name": "Cristina Gómez",
+    "address": {
+      "street": "456 Maple St",
+      "city": "Barcelona",
+      "state": "Catalonia",
+      "zipcode": "08001"
+    }
+  }
+]
