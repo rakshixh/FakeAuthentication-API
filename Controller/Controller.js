@@ -2,7 +2,7 @@ const express = require("express");
 const apiRoutes = express.Router();
 const User = require("../models/staticUsers");
 
-// Route to get all users using Mongoose
+// Route to get all users data
 apiRoutes.get("/allusers", async (req, res) => {
   try {
     const allUsers = await User.find();
