@@ -3,7 +3,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const favicon = require("serve-favicon");
 const path = require("path");
+const colors = require("colors");
+const dotenv = require("dotenv").config();
+const connectDB = require("./config/db");
 
+// connect to the database
+connectDB();
 // create our express app
 const app = express();
 
