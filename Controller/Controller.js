@@ -1,7 +1,7 @@
 const express = require("express");
 const apiRoutes = express.Router();
 const User = require("../models/staticUsers");
-const connectDB = require("../config/db");
+const { connectDB, disconnectDB } = require("../config/db");
 
 // Route to get all users data
 apiRoutes.get("/allusers", async (req, res) => {
@@ -15,6 +15,7 @@ apiRoutes.get("/allusers", async (req, res) => {
       allUsers: allUsers,
     };
     res.status(200).json(response);
+    disconnectDB();
   } catch (error) {
     res.status(200).json({
       statusCode: 500,
@@ -36,6 +37,7 @@ apiRoutes.get("/guests", async (req, res) => {
       guests: guests,
     };
     res.status(200).json(response);
+    disconnectDB();
   } catch (error) {
     res.status(200).json({
       statusCode: 500,
@@ -57,6 +59,7 @@ apiRoutes.get("/admins", async (req, res) => {
       guests: admins,
     };
     res.status(200).json(response);
+    disconnectDB();
   } catch (error) {
     res.status(200).json({
       statusCode: 500,
@@ -78,6 +81,7 @@ apiRoutes.get("/users", async (req, res) => {
       guests: users,
     };
     res.status(200).json(response);
+    disconnectDB();
   } catch (error) {
     res.status(200).json({
       statusCode: 500,
@@ -116,6 +120,7 @@ apiRoutes.post("/login", async (req, res) => {
         address: user.address,
       },
     });
+    disconnectDB();
   } catch (error) {
     res.status(200).json({
       statusCode: 500,
