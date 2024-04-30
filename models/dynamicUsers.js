@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { getCurrentDate } = require("../utilities/CurrentDate");
+const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
 
 const superAdminSchema = new mongoose.Schema(
   {
@@ -16,7 +16,7 @@ const superAdminSchema = new mongoose.Schema(
     },
     lastAccessed: {
       type: String,
-      default: getCurrentDate(),
+      default: getCurrentDateTimeIndia(),
     },
   },
   { collection: "dynamicUsers" } // Define collection name here
