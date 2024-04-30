@@ -20,7 +20,6 @@ const dynamicUsersSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["guest", "user", "admin"],
       required: true,
     },
     name: {
