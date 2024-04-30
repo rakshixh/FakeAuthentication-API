@@ -56,4 +56,39 @@ superAdminRoutes.post("/register/superadmin", async (req, res) => {
   }
 });
 
+// Route to delete the Super Admin Account by username
+superAdminRoutes.delete(
+  "/delete/superadmin/:SuperAdminUserName",
+  async (req, res) => {
+    await connectDB();
+    try {
+      const { SuperAdminUserName } = req.params;
+      const superAdmin = await SuperAdmin.findOneAndDelete({
+        SuperAdminUserName,
+      });
+
+      if (!superAdmin) {
+        return res.status(200).json({
+          statusCode: 404,
+          status: false,
+          message: "Super Admin account not found",
+        });
+      }
+
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: "Super Admin account deleted successfully",
+      });
+      disconnectDB();
+    } catch (error) {
+      res.status(200).json({
+        statusCode: 500,
+        status: false,
+        message: "Internal server error",
+      });
+    }
+  }
+);
+
 module.exports = superAdminRoutes;
