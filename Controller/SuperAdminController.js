@@ -222,4 +222,39 @@ superAdminRoutes.post(
   }
 );
 
+//Route to GET all the User Accounts under a Super Admin Account
+superAdminRoutes.get(
+  "/get/superadmin/users/:SuperAdminUserName",
+  async (req, res) => {
+    await connectDB();
+    try {
+      const { SuperAdminUserName } = req.params;
+      const superAdmin = await SuperAdmin.findOne({ SuperAdminUserName });
+
+      if (!superAdmin) {
+        disconnectDB();
+        return res.status(200).json({
+          statusCode: 404,
+          status: false,
+          message: "Super Admin account not found",
+        });
+      }
+
+      const users = await DynamicUsersData.find({ SuperAdminUserName });
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        users: users,
+      });
+      disconnectDB();
+    } catch (error) {
+      res.status(200).json({
+        statusCode: 500,
+        status: false,
+        message: "Internal server error",
+      });
+    }
+  }
+);
+
 module.exports = superAdminRoutes;
