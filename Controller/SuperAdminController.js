@@ -179,6 +179,19 @@ superAdminRoutes.post(
         });
       }
 
+      // Check the count of existing users under this super admin
+      const userCount = await DynamicUsersData.countDocuments({
+        SuperAdminUserName,
+      });
+      if (userCount >= 15) {
+        disconnectDB();
+        return res.status(400).json({
+          statusCode: 400,
+          status: false,
+          message: "Maximum number of users reached for this Super Admin",
+        });
+      }
+
       // All validations passed, proceed to create the user
       const userDataWithSuperAdmin = {
         ...userData,
