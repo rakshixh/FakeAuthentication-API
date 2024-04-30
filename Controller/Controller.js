@@ -1,46 +1,13 @@
 const express = require("express");
-const cron = require("node-cron");
-const apiRoutes = express.Router();
+const userRoutes = express.Router();
 const User = require("../models/staticUsers");
 const { connectDB, disconnectDB } = require("../config/db");
 
-// Function to make a connection to database and disconnect
-const OpenAndCloseConnection = async () => {
-  try {
-    await connectDB();
-    console.log("--------------------------------------------");
-    console.log("28 DAYS OVER!");
-    console.log(
-      "Making connection to the database to keep the cluster running!"
-    );
-    console.log("-------------------------------------------- \n \n");
-    setTimeout(async () => {
-      await disconnectDB();
-      console.log("--------------------------------------------");
-      console.log("20 Seconds Over!");
-      console.log("Disconnecting the connection from the database!");
-      console.log("-------------------------------------------- \n \n");
-    }, 20000); // Disconnect after 20 seconds
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
-
-// Schedule the function to run every 28 days
-cron.schedule(
-  "0 0 1 * *",
-  async () => {
-    // Runs at midnight on the 1st of every month
-    await OpenAndCloseConnection();
-  },
-  {
-    scheduled: true,
-    timezone: "Asia/Kolkata",
-  }
-);
+// @desc These are Static APIs with only GET requests
+// ----------------------------------------------------------------
 
 // Route to get all users data
-apiRoutes.get("/allusers", async (req, res) => {
+userRoutes.get("/allusers", async (req, res) => {
   await connectDB();
   try {
     const allUsers = await User.find();
@@ -62,7 +29,7 @@ apiRoutes.get("/allusers", async (req, res) => {
 });
 
 // Route to get only Guest Users
-apiRoutes.get("/guests", async (req, res) => {
+userRoutes.get("/guests", async (req, res) => {
   await connectDB();
   try {
     const guests = await User.find({ role: "guest" });
@@ -84,7 +51,7 @@ apiRoutes.get("/guests", async (req, res) => {
 });
 
 // Route to get only Admins Users
-apiRoutes.get("/admins", async (req, res) => {
+userRoutes.get("/admins", async (req, res) => {
   await connectDB();
   try {
     const admins = await User.find({ role: "admin" });
@@ -106,7 +73,7 @@ apiRoutes.get("/admins", async (req, res) => {
 });
 
 // Route to get only Normal Users
-apiRoutes.get("/users", async (req, res) => {
+userRoutes.get("/users", async (req, res) => {
   await connectDB();
   try {
     const users = await User.find({ role: "user" });
@@ -128,7 +95,7 @@ apiRoutes.get("/users", async (req, res) => {
 });
 
 // Route to login the users
-apiRoutes.post("/login", async (req, res) => {
+userRoutes.post("/login", async (req, res) => {
   await connectDB();
   try {
     const { username, password } = req.body;
@@ -166,4 +133,4 @@ apiRoutes.post("/login", async (req, res) => {
   }
 });
 
-module.exports = apiRoutes;
+module.exports = userRoutes;
