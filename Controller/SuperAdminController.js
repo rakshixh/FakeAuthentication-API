@@ -1,4 +1,6 @@
 const express = require("express");
+const cron = require("node-cron");
+const colors = require("colors");
 const superAdminRoutes = express.Router();
 const SuperAdmin = require("../models/dynamicUsers");
 const DynamicUsersData = require("../models/dynamicUsersData");
@@ -254,6 +256,79 @@ superAdminRoutes.get(
         message: "Internal server error",
       });
     }
+  }
+);
+
+// Cron job to check for inactive Super Admins every 3 minutes
+cron.schedule(
+  "0 0 * * *",
+  async () => {
+    await connectDB();
+    try {
+      const superAdmins = await SuperAdmin.find();
+      const currentDateIndia = getCurrentDateTimeIndia();
+      const deletedSuperAdmins = [];
+
+      // Loop through Super Admins to check for inactivity
+      for (const superAdmin of superAdmins) {
+        const lastAccessedDate = new Date(superAdmin.lastAccessed);
+        const currentDate = new Date(currentDateIndia);
+
+        // Calculate the difference in milliseconds
+        const differenceInMs = currentDate - lastAccessedDate;
+
+        // Convert milliseconds to days
+        const differenceInDays = Math.floor(
+          differenceInMs / (1000 * 60 * 60 * 24)
+        );
+
+        console.log(
+          `\nSuper Admin => User Name: ${superAdmin.SuperAdminUserName} => Name: ${superAdmin.SuperAdminName}`
+            .yellow.bgRed.bold.underline
+        );
+
+        console.log(
+          `Inactive from ${superAdmin.lastAccessed} to ${currentDateIndia} for ${differenceInDays} days!`
+            .yellow.bgRed.bold.underline
+        );
+
+        // Check if the Super Admin has been inactive for 28 days
+        if (differenceInDays >= 28) {
+          deletedSuperAdmins.push(superAdmin);
+
+          console.log(
+            "\n----------------------------------------------------------"
+          );
+          console.log(
+            `Super Admin ${superAdmin.SuperAdminUserName} has been inactive for 28 days. Deleting the account...`
+              .cyan.bold
+          );
+
+          // Delete the Super Admin
+          await SuperAdmin.deleteOne({ _id: superAdmin._id });
+
+          console.log(
+            `Super Admin ${superAdmin.SuperAdminUserName} deleted successfully!\n`
+              .cyan.bold
+          );
+          console.log(
+            "----------------------------------------------------------"
+          );
+
+          // Delete all documents in DynamicUsersData collection associated with this Super Admin
+          await DynamicUsersData.deleteMany({
+            SuperAdminUserName: superAdmin.SuperAdminUserName,
+          });
+        }
+      }
+      disconnectDB();
+    } catch (error) {
+      console.error("Cron job error:", error);
+    }
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Kolkata",
   }
 );
 
