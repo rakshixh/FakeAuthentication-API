@@ -259,9 +259,9 @@ superAdminRoutes.get(
   }
 );
 
-// Cron job to check for inactive Super Admins every 3 minutes
+// Cron job to check for inactive Super Admins every day at midnight
 cron.schedule(
-  "0 0 * * *",
+  "0 0 * * *", // Runs every day at midnight
   async () => {
     await connectDB();
     try {
