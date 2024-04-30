@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const apiRoutes = require("../Controller/Controller");
+const userRoutes = require("../Controller/Controller");
+const superAdminRoutes = require("../Controller/SuperAdminController");
 
-router.use(apiRoutes);
+router.use("/staticUsers", userRoutes);
+router.use("/dynamicUsers", superAdminRoutes);
 module.exports = router;
