@@ -1,9 +1,9 @@
 const express = require("express");
 const superAdminRoutes = express.Router();
-const User = require("../models/staticUsers");
 const SuperAdmin = require("../models/dynamicUsers");
 const DynamicUsersData = require("../models/dynamicUsersData");
 const { connectDB, disconnectDB } = require("../config/db");
+const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
 
 // @desc These are Dynamic APIs with only GET, POST, PUT, DELETE requests
 // ----------------------------------------------------------------------
@@ -187,6 +187,10 @@ superAdminRoutes.post(
         SuperAdminUserName,
       };
       const createUser = await DynamicUsersData.create(userDataWithSuperAdmin);
+      await SuperAdmin.findOneAndUpdate(
+        { SuperAdminUserName },
+        { lastAccessed: getCurrentDateTimeIndia() }
+      );
 
       res.status(200).json({
         statusCode: 200,
