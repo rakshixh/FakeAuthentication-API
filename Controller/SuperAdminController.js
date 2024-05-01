@@ -7,7 +7,7 @@ const DynamicUsersData = require("../models/dynamicUsersData");
 const { connectDB, disconnectDB } = require("../config/db");
 const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
 
-// @desc These are Dynamic APIs with only GET, POST, PUT, DELETE requests
+// @desc These are Dynamic APIs with only GET, POST, DELETE requests
 // ----------------------------------------------------------------------
 
 // Route to Register the Super Admin Account
