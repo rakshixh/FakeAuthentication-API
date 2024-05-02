@@ -27,6 +27,8 @@
     "node-cron": "^3.0.3",
     "nodemon": "^3.1.0",
     "path": "^0.12.7",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   }
 }
