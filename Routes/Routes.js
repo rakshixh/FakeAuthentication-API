@@ -5,6 +5,7 @@ const superAdminRoutes = require("../Controller/SuperAdminController");
 const SAUsersDataRoutes = require("../Controller/SAUserDataController");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const swaggerUiAssetPath = require("swagger-ui-dist").getAbsoluteFSPath();
 
 // Define base URLs for both localhost and hosted server
 const localhostURL = "http://localhost:3000";
@@ -59,7 +60,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
 // Swagger UI route
-router.use("/api-docs", swaggerUi.serve);
+// router.use("/api-docs", swaggerUi.serve);
+router.use("/api-docs", express.static(swaggerUiAssetPath));
 router.get("/api-docs", swaggerUi.setup(swaggerDocs));
 
 router.use("/staticUsers", userRoutes);
