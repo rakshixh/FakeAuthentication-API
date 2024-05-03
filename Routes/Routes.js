@@ -10,6 +10,8 @@ const swaggerUi = require("swagger-ui-express");
 const PORT = process.env.PORT || 3000;
 const localhostURL = `http://localhost:${PORT}`;
 const hostedURL = "https://fakeauthentication-api.vercel.app/";
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 // Swagger definition for OAS 3
 const swaggerOptions = {
@@ -61,21 +63,11 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
 // Swagger UI route
-// router.use("/api-docs", swaggerUi.serve);
+router.use("/api-docs", swaggerUi.serve);
 // router.get("/api-docs", swaggerUi.setup(swaggerDocs));
-
-// Serve Swagger UI assets
 router.use(
   "/api-docs",
-  swaggerUi.serveFiles(swaggerDocs, {
-    indexFile: false,
-  })
-);
-router.get(
-  "/api-docs",
-  swaggerUi.setup(swaggerDocs, {
-    explorer: true,
-  })
+  swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL })
 );
 
 router.use("/staticUsers", userRoutes);
