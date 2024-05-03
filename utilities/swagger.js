@@ -59,4 +59,4 @@ const options = {
   customCss: ".swagger-ui .topbar { display: none }",
 };
 
-module.exports = swaggerUi.setup(swaggerDocs, options);
+module.exports = swaggerUi.setup(swaggerDocs);
