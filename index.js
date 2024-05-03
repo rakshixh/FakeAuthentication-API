@@ -71,7 +71,7 @@ app.use("/api", routes);
 app.use("/api/api-docs", swaggerUi.serve, swagger);
 
 // start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Fake Authentication API server is running on port: ${PORT}`);
 });
