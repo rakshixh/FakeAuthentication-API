@@ -8,6 +8,7 @@ const dotenv = require("dotenv").config();
 const cron = require("node-cron");
 const { connectDB, disconnectDB } = require("./config/db");
 
+const { swaggerServe, swaggerSetup } = require("./config/swaggerConfig");
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
@@ -124,11 +125,14 @@ app.use("/api", routes);
 
 //Swagger serve route
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use(
-  "/api/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL })
-);
+// app.use(
+//   "/api/api-docs",
+//   swaggerUi.serve,
+//   swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL })
+// );
+
+app.use("/api/api-docs", swaggerServe, swaggerSetup);
+
 // start the server
 app.listen(PORT, () => {
   console.log(`Fake Authentication API server is running on port: ${PORT}`);

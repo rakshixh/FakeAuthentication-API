@@ -13,38 +13,6 @@ const { connectDB, disconnectDB } = require("../config/db");
  *   description: These APIs are for fast access to static data with GET and POST requests!
  */
 
-/**
- * @swagger
- * /api/staticUsers/allusers:
- *   get:
- *     summary: Get all static users
- *     tags: [Static Users]
- *     description: Retrieve all static users from the database
- *     responses:
- *       '200':
- *         description: An object with a JSON array of all users
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 statusCode:
- *                   type: integer
- *                   example: 200
- *                 status:
- *                   type: boolean
- *                   example: true
- *                 message:
- *                   type: string
- *                   example: All users fetched successfully
- *                 allUsers:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/User'
- *       '500':
- *         description: Internal server error
- */
-
 // Route to get all users data
 userRoutes.get("/allusers", async (req, res) => {
   await connectDB();

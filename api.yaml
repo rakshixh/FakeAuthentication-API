@@ -1,0 +1,225 @@
+openapi: 3.0.0
+info:
+  title: Fake Authentication API
+  description: APIs for authentication.
+  version: 1.0
+
+servers:
+  - url: http://localhost:5000/
+    description: Local server
+  - url: https://fakeauthentication-api.vercel.app/
+    description: Pre Production server
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        name:
+          type: string
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            zipcode:
+              type: string
+
+paths:
+  /api/staticUsers/allusers:
+    get:
+      summary: Get all static users
+      tags: [Static Users]
+      description: Retrieve all static users from the database
+      responses:
+        "200":
+          description: An object with a JSON array of all users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: All users fetched successfully
+                  allUsers:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+        "500":
+          description: Internal server error
+
+  /api/staticUsers/guests:
+    get:
+      summary: Get all static guest users
+      tags: [Static Users]
+      description: Retrieve all static guest users from the database
+      responses:
+        "200":
+          description: An object with a JSON array of all guest users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: All guest users fetched successfully
+                  guests:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+        "500":
+          description: Internal server error
+
+  /api/staticUsers/admins:
+    get:
+      summary: Get all static admin users
+      tags: [Static Users]
+      description: Retrieve all static admin users from the database
+      responses:
+        "200":
+          description: An object with a JSON array of all admin users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: All admin users fetched successfully
+                  admins:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+        "500":
+          description: Internal server error
+
+  /api/staticUsers/users:
+    get:
+      summary: Get all static normal users
+      tags: [Static Users]
+      description: Retrieve all static normal users from the database
+      responses:
+        "200":
+          description: An object with a JSON array of all normal users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: All normal users fetched successfully
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+        "500":
+          description: Internal server error
+
+  /api/staticUsers/login:
+    post:
+      summary: Log in API for static users
+      tags: [Static Users]
+      description: Log in the user with username and password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: michael_johnson
+                password:
+                  type: string
+                  example: Michael123!
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 200
+                  status:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Login successful
+                  user:
+                    $ref: "#/components/schemas/User"
+        "401":
+          description: Invalid username or password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 401
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid username or password
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    example: 500
+                  status:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Internal server error
