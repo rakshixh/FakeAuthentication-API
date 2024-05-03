@@ -2,7 +2,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
 // Define base URLs for both localhost and hosted server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const localhostURL = `http://localhost:${PORT}`;
 const hostedURL = "https://fakeauthentication-api.vercel.app/";
 
@@ -52,15 +52,10 @@ const swaggerOptions = {
         },
       },
     },
-    security: [],
   },
   apis: ["./Controller/*.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-
-const options = {
-  customCss: ".swagger-ui .topbar { display: none }",
-};
 
 module.exports = swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL });
