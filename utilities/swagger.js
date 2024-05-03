@@ -6,6 +6,10 @@ const PORT = process.env.PORT || 3000;
 const localhostURL = `http://localhost:${PORT}`;
 const hostedURL = "https://fakeauthentication-api.vercel.app/";
 
+// const variable for CSS URL
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+
 // Swagger definition for OAS 3
 const swaggerOptions = {
   definition: {
@@ -59,4 +63,4 @@ const options = {
   customCss: ".swagger-ui .topbar { display: none }",
 };
 
-module.exports = swaggerUi.setup(swaggerDocs);
+module.exports = swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL });
