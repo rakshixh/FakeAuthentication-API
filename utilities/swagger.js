@@ -1,17 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const userRoutes = require("../Controller/UserController");
-const superAdminRoutes = require("../Controller/SuperAdminController");
-const SAUsersDataRoutes = require("../Controller/SAUserDataController");
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
 // Define base URLs for both localhost and hosted server
 const PORT = process.env.PORT || 3000;
 const localhostURL = `http://localhost:${PORT}`;
 const hostedURL = "https://fakeauthentication-api.vercel.app/";
-const CSS_URL =
-  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 // Swagger definition for OAS 3
 const swaggerOptions = {
@@ -60,21 +53,10 @@ const swaggerOptions = {
   apis: ["./Controller/*.js"],
 };
 
-// const swaggerDocs = swaggerJsdoc(swaggerOptions);
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 const options = {
   customCss: ".swagger-ui .topbar { display: none }",
 };
 
-// Swagger UI route
-// router.use("/api-docs", swaggerUi.serve);
-// router.get("/api-docs", swaggerUi.setup(swaggerDocs));
-
-// router.use(
-//   "/api-docs",
-//   swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL })
-// );
-
-router.use("/staticUsers", userRoutes);
-router.use("/dynamicUsers", superAdminRoutes, SAUsersDataRoutes);
-module.exports = router;
+module.exports = swaggerUi.setup(swaggerDocs, options);

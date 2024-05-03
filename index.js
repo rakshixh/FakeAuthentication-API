@@ -8,6 +8,9 @@ const dotenv = require("dotenv").config();
 const cron = require("node-cron");
 const { connectDB, disconnectDB } = require("./config/db");
 
+const swaggerUi = require("swagger-ui-express");
+const swagger = require("./utilities/swagger");
+
 // create our express app
 const app = express();
 
@@ -63,6 +66,9 @@ app.get("/", (req, res) => {
 
 const routes = require("./Routes/Routes");
 app.use("/api", routes);
+
+//Swagger serve route
+app.use("/api/api-docs", swaggerUi.serve, swagger);
 
 // start the server
 const PORT = process.env.PORT || 3000;
