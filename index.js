@@ -8,8 +8,17 @@ const dotenv = require("dotenv").config();
 const cron = require("node-cron");
 const { connectDB, disconnectDB } = require("./config/db");
 
+const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const swagger = require("./utilities/swagger");
+
+// Define base URLs for both localhost and hosted server
+const PORT = process.env.PORT || 5000;
+const localhostURL = `http://localhost:${PORT}`;
+const hostedURL = "https://fakeauthentication-api.vercel.app/";
+
+// const variable for CSS URL
+const CSS_URL =
+  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
 // create our express app
 const app = express();
@@ -23,6 +32,52 @@ app.use(cors());
 
 // Serve favicon
 app.use(favicon(path.join(__dirname, "favicon.ico")));
+
+// Swagger definition for OAS 3
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Fake Authentication API",
+      description: "APIs for user authentication",
+      version: "1.0.0",
+    },
+    servers: [
+      {
+        url: localhostURL,
+        description: "Local Server",
+      },
+      {
+        url: hostedURL,
+        description: "Hosted Server",
+      },
+    ],
+    components: {
+      schemas: {
+        User: {
+          type: "object",
+          properties: {
+            username: { type: "string" },
+            password: { type: "string" },
+            email: { type: "string" },
+            role: { type: "string" },
+            name: { type: "string" },
+            address: {
+              type: "object",
+              properties: {
+                street: { type: "string" },
+                city: { type: "string" },
+                state: { type: "string" },
+                zipcode: { type: "string" },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  apis: ["./Controller/*.js"],
+};
 
 // Function to make a connection to database and disconnect
 const OpenAndCloseConnection = async () => {
@@ -68,10 +123,13 @@ const routes = require("./Routes/Routes");
 app.use("/api", routes);
 
 //Swagger serve route
-app.use("/api/api-docs", swaggerUi.serve, swagger);
-
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use(
+  "/api/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs, { customCssUrl: CSS_URL })
+);
 // start the server
-const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Fake Authentication API server is running on port: ${PORT}`);
 });
