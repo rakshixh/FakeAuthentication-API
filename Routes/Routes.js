@@ -61,8 +61,22 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
 // Swagger UI route
-router.use("/api-docs", swaggerUi.serve);
-router.get("/api-docs", swaggerUi.setup(swaggerDocs));
+// router.use("/api-docs", swaggerUi.serve);
+// router.get("/api-docs", swaggerUi.setup(swaggerDocs));
+
+// Serve Swagger UI assets
+router.use(
+  "/api-docs",
+  swaggerUi.serveFiles(swaggerDocs, {
+    indexFile: false,
+  })
+);
+router.get(
+  "/api-docs",
+  swaggerUi.setup(swaggerDocs, {
+    explorer: true,
+  })
+);
 
 router.use("/staticUsers", userRoutes);
 router.use("/dynamicUsers", superAdminRoutes, SAUsersDataRoutes);
