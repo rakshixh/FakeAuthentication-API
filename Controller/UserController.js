@@ -9,20 +9,20 @@ const { connectDB, disconnectDB } = require("../config/db");
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: User management APIs
+ *   name: Static Users
+ *   description: These APIs are for fast access to static data with GET and POST requests!
  */
 
 /**
  * @swagger
  * /api/staticUsers/allusers:
  *   get:
- *     summary: Get all users
- *     tags: [Users]
- *     description: Retrieve all users from the database
+ *     summary: Get all static users
+ *     tags: [Static Users]
+ *     description: Retrieve all static users from the database
  *     responses:
  *       '200':
- *         description: A JSON array of all users
+ *         description: An object with a JSON array of all users
  *         content:
  *           application/json:
  *             schema:
@@ -69,14 +69,14 @@ userRoutes.get("/allusers", async (req, res) => {
 
 /**
  * @swagger
- * /api/guests:
+ * /api/staticUsers/guests:
  *   get:
- *     summary: Get all guest users
- *     tags: [Users]
- *     description: Retrieve all guest users from the database
+ *     summary: Get all static guest users
+ *     tags: [Static Users]
+ *     description: Retrieve all static guest users from the database
  *     responses:
  *       '200':
- *         description: A JSON array of all guest users
+ *         description: An object with a JSON array of all guest users
  *         content:
  *           application/json:
  *             schema:
@@ -123,14 +123,14 @@ userRoutes.get("/guests", async (req, res) => {
 
 /**
  * @swagger
- * /api/admins:
+ * /api/staticUsers/admins:
  *   get:
- *     summary: Get all admin users
- *     tags: [Users]
- *     description: Retrieve all admin users from the database
+ *     summary: Get all static admin users
+ *     tags: [Static Users]
+ *     description: Retrieve all static admin users from the database
  *     responses:
  *       '200':
- *         description: A JSON array of all admin users
+ *         description: An object with a JSON array of all admin users
  *         content:
  *           application/json:
  *             schema:
@@ -162,7 +162,7 @@ userRoutes.get("/admins", async (req, res) => {
       statusCode: 200,
       status: true,
       message: "All admin users fetched successfully",
-      guests: admins,
+      admins: admins,
     };
     res.status(200).json(response);
     disconnectDB();
@@ -177,14 +177,14 @@ userRoutes.get("/admins", async (req, res) => {
 
 /**
  * @swagger
- * /api/users:
+ * /api/staticUsers/users:
  *   get:
- *     summary: Get all normal users
- *     tags: [Users]
- *     description: Retrieve all normal users from the database
+ *     summary: Get all static normal users
+ *     tags: [Static Users]
+ *     description: Retrieve all static normal users from the database
  *     responses:
  *       '200':
- *         description: A JSON array of all normal users
+ *         description: An object with a JSON array of all normal users
  *         content:
  *           application/json:
  *             schema:
@@ -216,7 +216,7 @@ userRoutes.get("/users", async (req, res) => {
       statusCode: 200,
       status: true,
       message: "All normal users fetched successfully",
-      guests: users,
+      users: users,
     };
     res.status(200).json(response);
     disconnectDB();
@@ -231,10 +231,10 @@ userRoutes.get("/users", async (req, res) => {
 
 /**
  * @swagger
- * /api/login:
+ * /api/staticUsers/login:
  *   post:
- *     summary: Log in user
- *     tags: [Users]
+ *     summary: Log in API for static users
+ *     tags: [Static Users]
  *     description: Log in the user with username and password
  *     requestBody:
  *       required: true
@@ -245,10 +245,10 @@ userRoutes.get("/users", async (req, res) => {
  *             properties:
  *               username:
  *                 type: string
- *                 example: johndoe
+ *                 example: michael_johnson
  *               password:
  *                 type: string
- *                 example: password123
+ *                 example: Michael123!
  *     responses:
  *       '200':
  *         description: Login successful
