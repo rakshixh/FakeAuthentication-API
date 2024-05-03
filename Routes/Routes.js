@@ -5,20 +5,31 @@ const superAdminRoutes = require("../Controller/SuperAdminController");
 const SAUsersDataRoutes = require("../Controller/SAUserDataController");
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-const swaggerUiAssetPath = require("swagger-ui-dist").getAbsoluteFSPath();
 
 // Define base URLs for both localhost and hosted server
-const localhostURL = "http://localhost:3000";
+const PORT = process.env.PORT || 3000;
+const localhostURL = `http://localhost:${PORT}`;
 const hostedURL = "https://fakeauthentication-api.vercel.app/";
 
-// Swagger definition
+// Swagger definition for OAS 3
 const swaggerOptions = {
-  swaggerDefinition: {
+  definition: {
+    openapi: "3.0.0",
     info: {
-      title: "Authentication API",
+      title: "Fake Authentication API",
       description: "APIs for user authentication",
       version: "1.0.0",
     },
+    servers: [
+      {
+        url: localhostURL,
+        description: "Local Server",
+      },
+      {
+        url: hostedURL,
+        description: "Hosted Server",
+      },
+    ],
     components: {
       schemas: {
         User: {
@@ -42,16 +53,6 @@ const swaggerOptions = {
         },
       },
     },
-    servers: [
-      {
-        url: localhostURL,
-        description: "Localhost",
-      },
-      {
-        url: hostedURL,
-        description: "Hosted Server",
-      },
-    ],
     security: [],
   },
   apis: ["./Controller/*.js"],
@@ -60,8 +61,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
 
 // Swagger UI route
-// router.use("/api-docs", swaggerUi.serve);
-router.use("/api-docs", express.static(swaggerUiAssetPath));
+router.use("/api-docs", swaggerUi.serve);
 router.get("/api-docs", swaggerUi.setup(swaggerDocs));
 
 router.use("/staticUsers", userRoutes);
