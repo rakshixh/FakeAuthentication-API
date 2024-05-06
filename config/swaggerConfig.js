@@ -4,7 +4,7 @@ const swaggerUi = require("swagger-ui-express");
 // Define base URLs for both localhost and hosted server
 const PORT = process.env.PORT || 5000;
 const localhostURL = `http://localhost:${PORT}`;
-const hostedURL = "https://fakeauthentication-api.toystack.dev/";
+const hostedURL = "https://fakeauthentication-api.onrender.com/";
 
 // Swagger definition for OAS 3
 const swaggerOptions = {
