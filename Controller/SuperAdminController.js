@@ -13,7 +13,7 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
 /**
  * @swagger
  * tags:
- *   name: Dynamic Users
+ *   name: Dynamic Users - Super Admins
  *   description: APIs related to Dynamic Users
  */
 
@@ -23,7 +23,7 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
  *   post:
  *     summary: Register a Super Admin account
  *     description: Creates a new Super Admin account with provided username and name.
- *     tags: [Dynamic Users]
+ *     tags: [Dynamic Users - Super Admins]
  *     requestBody:
  *       required: true
  *       content:
@@ -167,11 +167,11 @@ superAdminRoutes.post("/register/superadmin", async (req, res) => {
 
 /**
  * @swagger
- * /api/dynamicUsers/get/superadmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/get/superadmin/:SuperAdminUserName:
  *   get:
  *     summary: Get Super Admin account by username
  *     description: Retrieve the Super Admin account details by username.
- *     tags: [Dynamic Users]
+ *     tags: [Dynamic Users - Super Admins]
  *     parameters:
  *       - in: path
  *         name: SuperAdminUserName
@@ -278,11 +278,11 @@ superAdminRoutes.get(
 
 /**
  * @swagger
- * /api/dynamicUsers/delete/superAdmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/delete/superAdmin/:SuperAdminUserName:
  *   delete:
  *     summary: Delete Super Admin account by username
  *     description: Deletes the Super Admin account identified by the username.
- *     tags: [Dynamic Users]
+ *     tags: [Dynamic Users - Super Admins]
  *     parameters:
  *       - in: path
  *         name: SuperAdminUserName
@@ -378,10 +378,17 @@ superAdminRoutes.delete(
 
 /**
  * @swagger
- * /dynamicUsers/create/superadmin/{SuperAdminUserName}:
+ * tags:
+ *   name: Dynamic Users - Super Admin's Users
+ *   description: APIs related to Dynamic Users
+ */
+
+/**
+ * @swagger
+ * /api/dynamicUsers/create/superadmin/:SuperAdminUserName:
  *   post:
  *     summary: Create a user account under a Super Admin account
- *     tags: [Dynamic Users]
+ *     tags: [Dynamic Users - Super Admin's Users]
  *     parameters:
  *       - in: path
  *         name: SuperAdminUserName
@@ -525,10 +532,10 @@ superAdminRoutes.post(
 
 /**
  * @swagger
- * /dynamicUsers/get/superadmin/users/{SuperAdminUserName}:
+ * /api/dynamicUsers/get/superadmin/users/:SuperAdminUserName:
  *   get:
  *     summary: Get all user accounts under a Super Admin account
- *     tags: [Dynamic Users]
+ *     tags: [Dynamic Users - Super Admin's Users]
  *     parameters:
  *       - in: path
  *         name: SuperAdminUserName
