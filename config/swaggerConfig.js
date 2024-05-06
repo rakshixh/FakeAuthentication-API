@@ -17,12 +17,12 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: localhostURL,
-        description: "Local Server",
-      },
-      {
         url: hostedURL,
         description: "Hosted Server",
+      },
+      {
+        url: localhostURL,
+        description: "Local Server",
       },
     ],
     components: {
