@@ -167,15 +167,16 @@ superAdminRoutes.post("/register/superadmin", async (req, res) => {
 
 /**
  * @swagger
- * /dynamicUsers/api/get/superadmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/get/superadmin/{SuperAdminUserName}:
  *   get:
  *     summary: Get Super Admin account by username
+ *     description: Retrieve the Super Admin account details by username.
  *     tags: [Dynamic Users]
  *     parameters:
  *       - in: path
  *         name: SuperAdminUserName
  *         required: true
- *         description: Username of the Super Admin account to retrieve
+ *         description: Username of the Super Admin account to retrieve.
  *         schema:
  *           type: string
  *     responses:
@@ -187,15 +188,58 @@ superAdminRoutes.post("/register/superadmin", async (req, res) => {
  *               type: object
  *               properties:
  *                 statusCode:
- *                   type: number
+ *                   type: integer
+ *                   example: 200
  *                 status:
  *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Super Admin account found
  *                 superAdmin:
- *                   $ref: '#/components/schemas/SuperAdmin'
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                       example: 60e88bc894dbef1e6c04f507
+ *                     SuperAdminUserName:
+ *                       type: string
+ *                       example: superadmin1
+ *                     SuperAdminName:
+ *                       type: string
+ *                       example: John Doe
  *       '404':
  *         description: Super Admin account not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Super Admin account not found
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 
 //Route to GET the Super Admin Account by username
@@ -218,6 +262,7 @@ superAdminRoutes.get(
       res.status(200).json({
         statusCode: 200,
         status: true,
+        message: "Super Admin account found",
         superAdmin: superAdmin,
       });
       disconnectDB();
