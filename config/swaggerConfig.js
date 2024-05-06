@@ -46,6 +46,49 @@ const swaggerOptions = {
             },
           },
         },
+        SuperAdmin: {
+          type: "object",
+          properties: {
+            SuperAdminUserName: {
+              type: "string",
+              required: true,
+              unique: true,
+              lowercase: true,
+              pattern: "^[a-z0-9_\\.]+$",
+            },
+            SuperAdminName: { type: "string", required: true },
+            lastAccessed: {
+              type: "string",
+              default: "getCurrentDateTimeIndia()",
+            },
+          },
+        },
+        DynamicUsersData: {
+          type: "object",
+          properties: {
+            username: {
+              type: "string",
+              required: true,
+              unique: true,
+              lowercase: true,
+              pattern: "^[a-z0-9_\\.]+$",
+            },
+            password: { type: "string", required: true },
+            email: { type: "string", required: true, unique: true },
+            role: { type: "string", required: true },
+            name: { type: "string", required: true },
+            address: {
+              type: "object",
+              properties: {
+                street: { type: "string", required: true },
+                city: { type: "string", required: true },
+                state: { type: "string", required: true },
+                zipcode: { type: "string", required: true },
+              },
+            },
+            SuperAdminUserName: { type: "string", required: true },
+          },
+        },
       },
     },
   },
