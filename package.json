@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/rakshixh/FakeAuthentication-API#readme",
   "dependencies": {
+    "axios": "^1.6.8",
     "body-parser": "^1.20.2",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
