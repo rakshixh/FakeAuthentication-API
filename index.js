@@ -30,7 +30,7 @@ const OpenAndCloseConnection = async () => {
   try {
     await connectDB();
     console.log("--------------------------------------------");
-    console.log("28 DAYS OVER!");
+    console.log("9 MINUTES OVER!");
     console.log(
       "Making connection to the database to keep the cluster running!"
     );
@@ -47,11 +47,11 @@ const OpenAndCloseConnection = async () => {
   }
 };
 
-// Schedule the function to run every 28 days
+// Schedule the function to run every 9 mins
 cron.schedule(
-  "0 0 1 * *",
+  "*/9 * * * *",
   async () => {
-    // Runs at midnight on the 1st of every month
+    // Runs every 9 mins
     await OpenAndCloseConnection();
   },
   {
