@@ -278,15 +278,16 @@ superAdminRoutes.get(
 
 /**
  * @swagger
- * /dynamicUsers/delete/superadmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/delete/superAdmin/{SuperAdminUserName}:
  *   delete:
  *     summary: Delete Super Admin account by username
+ *     description: Deletes the Super Admin account identified by the username.
  *     tags: [Dynamic Users]
  *     parameters:
  *       - in: path
  *         name: SuperAdminUserName
  *         required: true
- *         description: Username of the Super Admin account to delete
+ *         description: Username of the Super Admin account to delete.
  *         schema:
  *           type: string
  *     responses:
@@ -298,15 +299,46 @@ superAdminRoutes.get(
  *               type: object
  *               properties:
  *                 statusCode:
- *                   type: number
+ *                   type: integer
+ *                   example: 200
  *                 status:
  *                   type: boolean
+ *                   example: true
  *                 message:
  *                   type: string
+ *                   example: Super Admin account deleted successfully
  *       '404':
  *         description: Super Admin account not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Super Admin account not found
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 
 // Route to delete the Super Admin Account by username
