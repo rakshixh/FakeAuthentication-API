@@ -6,6 +6,7 @@ const path = require("path");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
 const cron = require("node-cron");
+const axios = require("axios");
 const { connectDB, disconnectDB } = require("./config/db");
 const { swaggerServe, swaggerSetup } = require("./config/swaggerConfig");
 
@@ -30,7 +31,7 @@ const OpenAndCloseConnection = async () => {
   try {
     await connectDB();
     console.log("--------------------------------------------");
-    console.log("9 MINUTES OVER!");
+    console.log("28 DAYS OVER!");
     console.log(
       "Making connection to the database to keep the cluster running!"
     );
@@ -47,12 +48,33 @@ const OpenAndCloseConnection = async () => {
   }
 };
 
-// Schedule the function to run every 9 mins
+// Schedule the function to run every 28 days
+cron.schedule(
+  "0 0 1 * *",
+  async () => {
+    // Runs at midnight on the 1st of every month
+    await OpenAndCloseConnection();
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Kolkata",
+  }
+);
+
+// Schedule a job to make a request to the server every 5 minutes
+const KeepActivityConnection = "https://fakeauthentication-api.onrender.com";
 cron.schedule(
   "*/9 * * * *",
   async () => {
-    // Runs every 9 mins
-    await OpenAndCloseConnection();
+    try {
+      // Make a request to the root endpoint to keep the server active
+      const response = await axios.get(`${KeepActivityConnection}`);
+      console.log(
+        `\nRequest to server made to keep it active. \nResponse:${response.data}\n`
+      );
+    } catch (error) {
+      console.error("Error making request:", error.message);
+    }
   },
   {
     scheduled: true,
