@@ -17,7 +17,7 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
 
 /**
  * @swagger
- * /api/dynamicUsers/create/superadmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/superAdmin/register/users/{SuperAdminUserName}:
  *   post:
  *     summary: Create a user account under a Super Admin account
  *     tags: [Dynamic Users - Super Admin's Users]
@@ -28,8 +28,10 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
  *         description: Username of the Super Admin account under which the user account will be created
  *         schema:
  *           type: string
+ *           example: superadmin
  *     requestBody:
  *       required: true
+ *       description: Please include all the properties given below in request body to create the user under the super admin.
  *       content:
  *         application/json:
  *           schema:
@@ -37,13 +39,37 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
  *             properties:
  *               username:
  *                 type: string
+ *                 example: user1
+ *               password:
+ *                 type: string
+ *                 example: userpass@1!
  *               email:
  *                 type: string
- *               otherProperties:
+ *                 example: user1@gmail.com
+ *               role:
+ *                 type: string
+ *                 example: guest
+ *               name:
+ *                 type: string
+ *                 example: User One
+ *               address:
  *                 type: object
+ *                 properties:
+ *                   street:
+ *                     type: string
+ *                     example: 123 Main St
+ *                   city:
+ *                     type: string
+ *                     example: New York
+ *                   state:
+ *                     type: string
+ *                     example: NY
+ *                   zipcode:
+ *                     type: string
+ *                     example: 10001
  *     responses:
  *       '200':
- *         description: User account created successfully
+ *         description: superadmin created a new user account successfully
  *         content:
  *           application/json:
  *             schema:
@@ -51,23 +77,105 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
  *               properties:
  *                 statusCode:
  *                   type: number
+ *                   example: 200
  *                 status:
  *                   type: boolean
+ *                   example: true
  *                 message:
  *                   type: string
+ *                   example: superadmin created a new user account successfully
  *                 user:
- *                   $ref: '#/components/schemas/SuperAdmin'
+ *                   type: object
+ *                   properties:
+ *                     username:
+ *                       type: string
+ *                       example: user1
+ *                     password:
+ *                       type: string
+ *                       example: userpass@1!
+ *                     email:
+ *                       type: string
+ *                       example: user1@gmail.com
+ *                     role:
+ *                       type: string
+ *                       example: guest
+ *                     name:
+ *                       type: string
+ *                       example: User One
+ *                     address:
+ *                       type: object
+ *                       properties:
+ *                         street:
+ *                           type: string
+ *                           example: 123 Main St
+ *                         city:
+ *                           type: string
+ *                           example: New York
+ *                         state:
+ *                           type: string
+ *                           example: NY
+ *                         zipcode:
+ *                           type: string
+ *                           example: 10001
+ *                     SuperAdminUserName:
+ *                       type: string
+ *                       example: superadmin
+ *                     _id:
+ *                       type: string
+ *                       example: 663b19bf4c0f18213033aeb8
  *       '400':
- *         description: Invalid username format, Username or email already exists, or Maximum number of users reached
+ *         description: Invalid username format OR Username or email already exists OR Maximum number of users reached
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 400
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Invalid username format, Username or email already exists, or Maximum number of users reached
  *       '404':
  *         description: Super Admin account not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Super Admin account not found
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 
 // Route to Create a multiple User Accounts under a Super Admin Account
 SAUsersDataRoutes.post(
-  "/create/superadmin/:SuperAdminUserName",
+  "/superAdmin/register/users/:SuperAdminUserName",
   async (req, res) => {
     await connectDB();
     try {
@@ -164,7 +272,7 @@ SAUsersDataRoutes.post(
 
 /**
  * @swagger
- * /api/dynamicUsers/get/superadmin/users/{SuperAdminUserName}:
+ * /api/dynamicUsers/superAdmin/get/users/{SuperAdminUserName}:
  *   get:
  *     summary: Get all user accounts under a Super Admin account
  *     tags: [Dynamic Users - Super Admin's Users]
@@ -199,7 +307,7 @@ SAUsersDataRoutes.post(
 
 //Route to GET all the User Accounts under a Super Admin Account
 SAUsersDataRoutes.get(
-  "/get/superadmin/users/:SuperAdminUserName",
+  "/superAdmin/get/users/:SuperAdminUserName",
   async (req, res) => {
     await connectDB();
     try {
