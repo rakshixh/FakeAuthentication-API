@@ -19,7 +19,7 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
 
 /**
  * @swagger
- * /api/dynamicUsers/register/superAdmin:
+ * /api/dynamicUsers/superAdmin/register:
  *   post:
  *     summary: Register a Super Admin account
  *     description: Creates a new Super Admin account with provided username and name.
@@ -117,7 +117,7 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
  */
 
 // Route to Register the Super Admin Account
-superAdminRoutes.post("/register/superadmin", async (req, res) => {
+superAdminRoutes.post("/superAdmin/register", async (req, res) => {
   await connectDB();
   try {
     const { SuperAdminUserName, SuperAdminName } = req.body;
@@ -167,7 +167,7 @@ superAdminRoutes.post("/register/superadmin", async (req, res) => {
 
 /**
  * @swagger
- * /api/dynamicUsers/get/superadmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/superAdmin/get/{SuperAdminUserName}:
  *   get:
  *     summary: Get Super Admin account by username
  *     description: Retrieve the Super Admin account details by username.
@@ -245,7 +245,7 @@ superAdminRoutes.post("/register/superadmin", async (req, res) => {
 
 //Route to GET the Super Admin Account by username
 superAdminRoutes.get(
-  "/get/superadmin/:SuperAdminUserName",
+  "/superAdmin/get/:SuperAdminUserName",
   async (req, res) => {
     await connectDB();
     try {
@@ -279,7 +279,7 @@ superAdminRoutes.get(
 
 /**
  * @swagger
- * /api/dynamicUsers/delete/superAdmin/{SuperAdminUserName}:
+ * /api/dynamicUsers/superAdmin/delete/{SuperAdminUserName}:
  *   delete:
  *     summary: Delete Super Admin account by username
  *     description: Deletes the Super Admin account identified by the username.
@@ -345,7 +345,7 @@ superAdminRoutes.get(
 
 // Route to delete the Super Admin Account by username
 superAdminRoutes.delete(
-  "/delete/superadmin/:SuperAdminUserName",
+  "/superAdmin/delete/:SuperAdminUserName",
   async (req, res) => {
     await connectDB();
     try {
