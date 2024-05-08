@@ -289,7 +289,7 @@ SAUsersDataRoutes.post(
  *           example: superadmin
  *     responses:
  *       '200':
- *         description: User accounts retrieved successfully
+ *         description: All User accounts under the Super Admin retrieved successfully
  *         content:
  *           application/json:
  *             schema:
@@ -419,9 +419,155 @@ SAUsersDataRoutes.get(
   }
 );
 
+/**
+ * @swagger
+ * /api/dynamicUsers/superAdmin/update/users/{SuperAdminUserName}/{username}:
+ *   put:
+ *     summary: Update specific user data created by the Super Admin
+ *     tags: [Dynamic Users - Super Admin's Users]
+ *     parameters:
+ *       - in: path
+ *         name: SuperAdminUserName
+ *         required: true
+ *         description: Username of the Super Admin who created the user
+ *         schema:
+ *           type: string
+ *           example: superadmin
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the user to update
+ *         schema:
+ *           type: string
+ *           example: user1
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Updated User
+ *               email:
+ *                 type: string
+ *                 example: updateduser@gmail.com
+ *               role:
+ *                 type: string
+ *                 example: Updated Role
+ *               address:
+ *                 type: object
+ *                 properties:
+ *                   street:
+ *                     type: string
+ *                     example: Updated 456 Second St
+ *                   city:
+ *                     type: string
+ *                     example: Updated Los Angeles
+ *                   state:
+ *                     type: string
+ *                     example: Updated CA
+ *                   zipcode:
+ *                     type: string
+ *                     example: 90001
+ *     responses:
+ *       '200':
+ *         description: Specific User data of a specific Super Admin updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 200
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Specific User data of a specific Super Admin updated successfully
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     address:
+ *                       type: object
+ *                       properties:
+ *                         street:
+ *                           type: string
+ *                           example: Updated 456 Second St
+ *                         city:
+ *                           type: string
+ *                           example: Updated Los Angeles
+ *                         state:
+ *                           type: string
+ *                           example: Updated CA
+ *                         zipcode:
+ *                           type: string
+ *                           example: 90001
+ *                     _id:
+ *                       type: string
+ *                       example: 663b19bf4c0f18213033aeb8
+ *                     username:
+ *                       type: string
+ *                       example: user1
+ *                     password:
+ *                       type: string
+ *                       example: userpass@1!
+ *                     email:
+ *                       type: string
+ *                       example: updateduser@gmail.com
+ *                     role:
+ *                       type: string
+ *                       example: Updated Role
+ *                     name:
+ *                       type: string
+ *                       example: Updated User
+ *                     SuperAdminUserName:
+ *                       type: string
+ *                       example: superadmin
+ *                     __v:
+ *                       type: number
+ *                       example: 0
+
+ *       '404':
+ *         description: User not found or not created by the specified Super Admin
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: User not found or not created by the specified Super Admin
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
+ */
+
 // Route to Update the Name, address and the role of the user created by the Super Admin
 SAUsersDataRoutes.put(
-  "/update/user/:SuperAdminUserName/:username",
+  "/superAdmin/update/users/:SuperAdminUserName/:username",
   async (req, res) => {
     await connectDB();
     try {
@@ -458,7 +604,8 @@ SAUsersDataRoutes.put(
       res.status(200).json({
         statusCode: 200,
         status: true,
-        message: "User data updated successfully",
+        message:
+          "Specific User data of a specific Super Admin updated successfully",
         user: user,
       });
       disconnectDB();
