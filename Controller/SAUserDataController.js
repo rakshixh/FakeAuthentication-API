@@ -619,9 +619,113 @@ SAUsersDataRoutes.put(
   }
 );
 
+/**
+ * @swagger
+ * /api/dynamicUsers/superAdmin/update/password/users/{SuperAdminUserName}/{username}:
+ *   put:
+ *     summary: Update the password of a specific user created by a specific Super Admin
+ *     tags: [Dynamic Users - Super Admin's Users]
+ *     parameters:
+ *       - in: path
+ *         name: SuperAdminUserName
+ *         required: true
+ *         description: Username of the Super Admin who created the user
+ *         schema:
+ *           type: string
+ *           example: superadmin
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the user whose password needs to be updated
+ *         schema:
+ *           type: string
+ *           example: user1
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 example: Type the new password
+ *               rePassword:
+ *                 type: string
+ *                 example: Retype the new password
+ *               currentPassword:
+ *                 type: string
+ *                 example: Type the current password
+ *     responses:
+ *       '200':
+ *         description: Specified User's password of a specified Super Admin updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 200
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Specified User's password of a specified Super Admin updated successfully
+ *       '400':
+ *         description: Current password incorrect, Passwords do not match, or New password must be different from the current password
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 400
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Current password incorrect, Passwords do not match, or New password must be different from the current password
+ *       '404':
+ *         description: User not found or not created by the specified Super Admin
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: User not found or not created by the specified Super Admin
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
+ */
+
 //Route to update the password of the user created by the super admin
 SAUsersDataRoutes.put(
-  "/update/password/:SuperAdminUserName/:username",
+  "/superAdmin/update/password/users/:SuperAdminUserName/:username",
   async (req, res) => {
     await connectDB();
     try {
@@ -685,8 +789,8 @@ SAUsersDataRoutes.put(
       res.status(200).json({
         statusCode: 200,
         status: true,
-        message: "User password updated successfully",
-        user: user,
+        message:
+          "Specified User's password of a specified Super Admin updated successfully",
       });
       disconnectDB();
     } catch (error) {
