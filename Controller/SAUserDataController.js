@@ -123,6 +123,9 @@ const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
  *                     _id:
  *                       type: string
  *                       example: 663b19bf4c0f18213033aeb8
+ *                     __v:
+ *                       type: number
+ *                       example: 0
  *       '400':
  *         description: Invalid username format OR Username or email already exists OR Maximum number of users reached
  *         content:
@@ -274,7 +277,7 @@ SAUsersDataRoutes.post(
  * @swagger
  * /api/dynamicUsers/superAdmin/get/users/{SuperAdminUserName}:
  *   get:
- *     summary: Get all user accounts under a Super Admin account
+ *     summary: Get all users under a Super Admin account
  *     tags: [Dynamic Users - Super Admin's Users]
  *     parameters:
  *       - in: path
@@ -283,9 +286,10 @@ SAUsersDataRoutes.post(
  *         description: Username of the Super Admin account to get users from
  *         schema:
  *           type: string
+ *           example: superadmin
  *     responses:
  *       '200':
- *         description: Users found
+ *         description: User accounts retrieved successfully
  *         content:
  *           application/json:
  *             schema:
@@ -293,16 +297,89 @@ SAUsersDataRoutes.post(
  *               properties:
  *                 statusCode:
  *                   type: number
+ *                   example: 200
  *                 status:
  *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                  type: string
+ *                  example: All User accounts under the Super Admin retrieved successfully
  *                 users:
  *                   type: array
  *                   items:
- *                     $ref: '#/components/schemas/SuperAdmin'
+ *                     type: object
+ *                     properties:
+ *                       address:
+ *                         type: object
+ *                         properties:
+ *                           street:
+ *                             type: string
+ *                             example: 123 Main St
+ *                           city:
+ *                             type: string
+ *                             example: New York
+ *                           state:
+ *                             type: string
+ *                             example: NY
+ *                           zipcode:
+ *                             type: string
+ *                             example: 10001
+ *                       _id:
+ *                         type: string
+ *                         example: 663b19bf4c0f18213033aeb8
+ *                       username:
+ *                         type: string
+ *                         example: user1
+ *                       password:
+ *                         type: string
+ *                         example: userpass@1!
+ *                       email:
+ *                         type: string
+ *                         example: user1@gmail.com
+ *                       role:
+ *                         type: string
+ *                         example: guest
+ *                       name:
+ *                         type: string
+ *                         example: User One
+ *                       SuperAdminUserName:
+ *                         type: string
+ *                         example: superadmin
+ *                       __v:
+ *                         type: number
+ *                         example: 0
  *       '404':
  *         description: Super Admin account not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Super Admin account not found
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 
 //Route to GET all the User Accounts under a Super Admin Account
@@ -327,6 +404,8 @@ SAUsersDataRoutes.get(
       res.status(200).json({
         statusCode: 200,
         status: true,
+        message:
+          "All User accounts under the Super Admin retrieved successfully",
         users: users,
       });
       disconnectDB();
