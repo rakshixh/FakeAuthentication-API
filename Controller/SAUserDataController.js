@@ -924,6 +924,145 @@ SAUsersDataRoutes.delete(
   }
 );
 
+/**
+ * @swagger
+ * /api/dynamicUsers/superAdmin/login/users/{SuperAdminUserName}:
+ *   post:
+ *     summary: Login user created by the Super Admin
+ *     tags: [Dynamic Users - Super Admin's Users]
+ *     parameters:
+ *       - in: path
+ *         name: SuperAdminUserName
+ *         required: true
+ *         description: Username of the Super Admin who created the user
+ *         schema:
+ *           type: string
+ *           example: superadmin
+ *     requestBody:
+ *       required: true
+ *       description: Please include all the properties given below in request body to login the user created under the super admin.
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: Username of the user who needs to login
+ *                 example: user1
+ *               password:
+ *                 type: string
+ *                 description: User's password who needs to login
+ *                 example: userpass@1!
+ *     responses:
+ *       '200':
+ *         description: User logged in successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 200
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: User logged in successfully!
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     address:
+ *                       type: object
+ *                       properties:
+ *                         street:
+ *                           type: string
+ *                           example: 456 Second St
+ *                         city:
+ *                           type: string
+ *                           example: Los Angeles
+ *                         state:
+ *                           type: string
+ *                           example: CA
+ *                         zipcode:
+ *                           type: string
+ *                           example: 90001
+ *                     _id:
+ *                       type: string
+ *                       example: 663b19bf4c0f18213033aeb8
+ *                     username:
+ *                       type: string
+ *                       example: user1
+ *                     password:
+ *                       type: string
+ *                       example: userpass@1!
+ *                     email:
+ *                       type: string
+ *                       example: user1@gmail.com
+ *                     role:
+ *                       type: string
+ *                       example: guest
+ *                     name:
+ *                       type: string
+ *                       example: User One
+ *                     SuperAdminUserName:
+ *                       type: string
+ *                       example: superadmin
+ *                     __v:
+ *                       type: number
+ *                       example: 0
+ *       '404':
+ *         description: User not found or not created by the specified Super Admin
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: User not found or not created by the specified Super Admin
+ *       '401':
+ *         description: Invalid username or password
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 401
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Invalid username or password
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: number
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
+ */
+
 // Route to login the specific user created by the Super Admin
 SAUsersDataRoutes.post(
   "/superAdmin/login/users/:SuperAdminUserName",
