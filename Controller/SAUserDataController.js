@@ -924,4 +924,58 @@ SAUsersDataRoutes.delete(
   }
 );
 
+// Route to login the specific user created by the Super Admin
+SAUsersDataRoutes.post(
+  "/superAdmin/login/users/:SuperAdminUserName",
+  async (req, res) => {
+    await connectDB();
+    try {
+      const { SuperAdminUserName } = req.params;
+      const { username, password } = req.body;
+
+      // Check if the user exists and was created by the specified Super Admin
+      const user = await DynamicUsersData.findOne({
+        username,
+        SuperAdminUserName,
+      });
+
+      // If user not found, send error response
+      if (!user) {
+        disconnectDB();
+        return res.status(200).json({
+          statusCode: 404,
+          status: false,
+          message: "User not found or not created by the specified Super Admin",
+        });
+      }
+
+      // If password doesn't match, send error response
+      if (user.password !== password) {
+        disconnectDB();
+        return res.status(200).json({
+          statusCode: 401,
+          status: false,
+          message: "Invalid username or password",
+        });
+      }
+
+      // User found and password matched, send success response
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message: "User logged in successfully!",
+        user: user,
+      });
+      disconnectDB();
+    } catch (error) {
+      disconnectDB();
+      res.status(200).json({
+        statusCode: 500,
+        status: false,
+        message: "Internal server error",
+      });
+    }
+  }
+);
+
 module.exports = SAUsersDataRoutes;
