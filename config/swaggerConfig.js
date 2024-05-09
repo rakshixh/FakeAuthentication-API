@@ -25,6 +25,21 @@ const swaggerOptions = {
         description: "Local Server",
       },
     ],
+    tags: [
+      {
+        name: "Static Users",
+        description:
+          "These APIs are for fast access to static data with GET and POST requests!",
+      },
+      {
+        name: "Dynamic Users - Super Admins",
+        description: "APIs related to Dynamic Users",
+      },
+      {
+        name: "Dynamic Users - Super Admin's Users",
+        description: "APIs related to Dynamic Users",
+      },
+    ],
     components: {
       schemas: {
         User: {
