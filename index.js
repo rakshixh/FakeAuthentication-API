@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Serve favicon
-app.use(favicon(path.join(__dirname, "favicon.ico")));
+app.use(favicon(path.join(__dirname, "assets", "favicon.ico")));
 
 // Function to make a connection to database and disconnect
 const OpenAndCloseConnection = async () => {
