@@ -10,4 +10,4 @@
 
 </div>
 
-![Beige   Black Geometric Technology LinkedIn Banner](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/269168d2-6d7e-437e-967c-5382a648c001)
+![Fake Authentication Api Banner](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/269168d2-6d7e-437e-967c-5382a648c001)
