@@ -11,3 +11,6 @@
 </div>
 
 ![Fake Authentication Api Banner](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/269168d2-6d7e-437e-967c-5382a648c001)
+
+<h2>Motto</h2>
+<p>Creating frontend projects often requires a backend for proper demonstration, which can be time-consuming for developers. To streamline this process, I've developed a fake authentication API. It allows frontend developers to effortlessly integrate authentication into their projects, saving time and enabling them to focus on crafting exceptional user experiences. This tool also serves as a valuable learning resource for beginners, providing hands-on experience with various API methods.</p>
