@@ -82,8 +82,11 @@ cron.schedule(
   }
 );
 
-// route
-app.get("/", (req, res) => {
+// Route to serve the website
+app.use(express.static(path.join(__dirname, "website")));
+
+// route to api
+app.get("/api", (req, res) => {
   res.send("Welcome to the Fake Authentication API!");
 });
 
