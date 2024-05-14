@@ -15,7 +15,7 @@
 <h2>👾 Motto</h2>
 <p>Developing front-end applications without key features like login and signup isn't ideal. Nowadays, every web app needs these basics. But for beginners, making them work can be tough. Creating backend APIs for just the front end is not easy, and it takes a lot of time. So, I created this Fake Authentication API. These APIs will help beginners and those who want to test front-end apps. It makes implementing login and signup functionalities easier without dealing with complex backend stuff. With this, anyone can get started quickly and save time, making web development smoother for everyone, regardless of their experience level.</p>
 
-<h2>More Info </h2>
+<h2>📚 More Info </h2>
 
 This project includes Swagger, a powerful tool for understanding each and every API. Swagger provides detailed documentation for every endpoint, making it easier to navigate and use the APIs effectively.
 
