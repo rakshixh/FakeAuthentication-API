@@ -50,3 +50,5 @@ You can explore API documentation at [Fake Authentication API's Swagger Document
 npm install
 npm start
 ```
+
+<h2>🪄 Contributions</h2>
