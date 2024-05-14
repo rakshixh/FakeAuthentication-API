@@ -23,10 +23,15 @@
 - Create a cluster within the designated project. (You have the option to select either a free or a paid cluster)
 - Within the `Collection` section of the cluster, create a database with the following collections.
 - Give database name as `FakeAuthenticationDB` and collection name as `dynamicUsers`.
- ![Screenshot from 2024-05-14 10-36-47](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/d30e7957-b36d-482b-aad8-70b0e6e1c154)
+ ![Screenshot](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/d30e7957-b36d-482b-aad8-70b0e6e1c154)
 - Clik on `Create` button.
 - Now you will see a &#8853; at the top left beside the database name. Click on that icon to create more collections. <br>
- ![Screenshot from 2024-05-14 10-42-43](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/bba0179c-b792-41c8-b1dc-ea37a3fca4eb)
+ ![Screenshot](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/bba0179c-b792-41c8-b1dc-ea37a3fca4eb)
 - When you click on that icon it will open a pop up modal where you can enter the collection name and click on `Create` button. Repeat this twice with other two collection names as following: `dynamicUsersData` and `staticUsers` <br>
- ![Screenshot from 2024-05-14 10-41-06](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/d7896be3-27cc-4f87-89f3-e53cdf6ddc6e)
+ ![Screenshot](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/d7896be3-27cc-4f87-89f3-e53cdf6ddc6e)
 
+### Step 2
+- By clicking on the `Connect` button, Copy the Connecion URL from the `overview` page. <br>
+![Screenshot](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/40fd3c4d-04ef-4aae-9692-10d83058844a)
+- Now clone this repo to your local system and open it in VS Code.
+- 
