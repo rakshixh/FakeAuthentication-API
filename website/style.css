@@ -1,0 +1,26 @@
+/* Custom styling */
+/* Center navbar brand */
+.navbar-brand {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Image styling */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Button styling */
+.btn-primary,
+.btn-secondary {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Paragraph styling */
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
