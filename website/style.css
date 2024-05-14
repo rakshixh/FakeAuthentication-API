@@ -1,8 +1,26 @@
-/* Custom styling */
-/* Center navbar brand */
+body {
+    font-family: "Reenie Beanie", cursive;
+    background-color: #F1EAFF;
+}
+
+.navbar {
+    background-color: #451952 !important;
+    height: 80px;
+}
+
 .navbar-brand {
     margin-left: auto;
     margin-right: auto;
+    font-size: 2em;
+    color: white !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-size: 1.5rem;
+    /* margin-right: 10px; */
+    padding: 0px 0px 0px 30px !important;
 }
 
 /* Image styling */
