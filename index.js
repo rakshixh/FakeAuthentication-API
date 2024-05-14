@@ -62,7 +62,8 @@ cron.schedule(
 );
 
 // Schedule a job to make a request to the server every 5 minutes
-const KeepActivityConnection = "https://fakeauthentication-api.onrender.com";
+const KeepActivityConnection =
+  "https://fakeauthentication-api.onrender.com/api";
 cron.schedule(
   "*/9 * * * *",
   async () => {
