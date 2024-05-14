@@ -31,7 +31,13 @@
  ![Screenshot](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/d7896be3-27cc-4f87-89f3-e53cdf6ddc6e)
 
 ### Step 2
-- By clicking on the `Connect` button, Copy the Connecion URL from the `overview` page. <br>
+- By clicking on the `Connect` button, Copy the Connecion String from the `overview` page. <br>
 ![Screenshot](https://github.com/rakshixh/FakeAuthentication-API/assets/83587918/40fd3c4d-04ef-4aae-9692-10d83058844a)
-- Now clone this repo to your local system and open it in VS Code.
-- 
+- Now clone this repo to your local system and open that in VS Code.
+- Rename the `.env .txt` file into `.env`
+- Paste the `connection String` that you copied earlier to MONGO_URI in `.env` file
+- Now run these commands
+```
+npm install
+npm start
+```
