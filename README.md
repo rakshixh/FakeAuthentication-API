@@ -20,9 +20,8 @@
 This project includes Swagger, a powerful tool for understanding each and every API. Swagger provides detailed documentation for every endpoint, making it easier to navigate and use the APIs effectively.
 
 > [!NOTE]
-> You can access Swagger Documentation at `/api/api-docs`.
-
-You can explore API documentation at [Fake Authentication API's Swagger Documentation](https://fakeauthentication-api.onrender.com/api/api-docs/).
+> End point for Swagger Documentation `/api/api-docs`.<br>
+> You can explore Swagger Documentation at [Fake Authentication API's Swagger Documentation](https://fakeauthentication-api.onrender.com/api/api-docs/).
 
 <h2>⚙️ Local Setup</h2>
 
