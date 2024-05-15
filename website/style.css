@@ -65,3 +65,17 @@ body {
 .btn:hover {
     color: #F1EAFF;
 }
+
+.card {
+    border-radius: 8px !important;
+}
+
+.card-title {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: x-large;
+}
+
+.card-text {
+    font-size: 1.1rem;
+}
