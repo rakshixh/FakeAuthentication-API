@@ -3,6 +3,22 @@ body {
     background-color: #F1EAFF;
 }
 
+/* Global Scroll Bar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F1EAFF;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7E57C2;
+    border-radius: 10px;
+}
+
+/* Navbar */
 .navbar {
     background-color: #451952 !important;
     height: 80px;
