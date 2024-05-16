@@ -68,6 +68,11 @@ body {
 
 .card {
     border-radius: 8px !important;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .card-title {
@@ -78,4 +83,10 @@ body {
 
 .card-text {
     font-size: 1.1rem;
+}
+
+.footer {
+    background-color: #0D1B2A;
+    padding: 50px;
+    margin-top: 50px;
 }
