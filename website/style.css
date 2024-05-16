@@ -85,6 +85,13 @@ body {
     font-size: 1.1rem;
 }
 
+/* Paragraph styling */
+.self-section-para {
+    font-size: 1.5rem;
+    text-align: justify;
+    margin: 0px;
+}
+
 .footer {
     background-color: #0D1B2A;
     padding: 50px;
