@@ -12,8 +12,18 @@ const swaggerOptions = {
     openapi: "3.0.0",
     info: {
       title: "Fake Authentication API",
-      description: "APIs for user authentication",
+      description:
+        "Developing front-end applications without key features like login and signup isn't ideal. Nowadays, every web app needs these basics. But for beginners, making them work can be tough. Creating backend APIs for just the front end is not easy, and it takes a lot of time. So, I created this Fake Authentication API. These APIs will help beginners and those who want to test front-end apps. It makes implementing login and signup functionalities easier without dealing with complex backend stuff. With this, anyone can get started quickly and save time, making web development smoother for everyone, regardless of their experience level.",
       version: "1.0.0",
+      contact: {
+        name: "Rakshith Acharya",
+        url: "https://github.com/rakshixh",
+        email: "rakshixh.socials@gmail.com",
+      },
+      license: {
+        name: "MIT",
+        url: "https://github.com/rakshixh/FakeAuthentication-API/blob/main/LICENSE",
+      },
     },
     servers: [
       {
