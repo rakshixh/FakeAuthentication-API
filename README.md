@@ -58,4 +58,5 @@ We expect all contributors to abide by the terms of our [Code of Conduct](https:
 
 <h2>🛡️ License</h2>
 
-This repository is licensed under the MIT license
+This repository is licensed under the MIT license.<br>
+Illustrations by [StorySet](https://storyset.com/data) bring our [Fake Authentication API Website](https://fakeauthentication-api.onrender.com/) to life!
