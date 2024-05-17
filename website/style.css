@@ -4,7 +4,7 @@ body {
     line-height: 2.2rem;
 }
 
-/* Global Scroll Bar */
+/* -------------------Global Scroll Bar---------------------- */
 ::-webkit-scrollbar {
     width: 5px;
 }
@@ -19,28 +19,116 @@ body {
     border-radius: 10px;
 }
 
-/* Navbar */
+/* -----------------------Navbar---------------------- */
 .navbar {
-    background-color: #451952 !important;
-    height: 80px;
+    background-color: #451952;
 }
 
 .navbar-brand {
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 2em;
-    color: white !important;
-    font-weight: bold;
+    color: #F1EAFF;
+    font-size: 2rem !important;
 }
 
-.navbar-nav .nav-link {
-    color: white !important;
-    font-size: 1.5rem;
-    padding: 0px 0px 0px 0px !important;
-    margin: 0px 0px 0px 30px !important;
+.navbar-brand:hover {
+    color: #F1EAFF !important;
 }
 
-/* Image styling */
+.nav-item .nav-link {
+    color: #F1EAFF;
+    font-size: 1.5rem !important;
+    padding: 0px !important;
+}
+
+.nav-item .nav-link:hover {
+    color: #D8CCED;
+}
+
+.icon {
+    margin-right: 10px !important;
+}
+
+/* to remove the default border around the humburger button */
+button.navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+button.navbar-toggler:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler:focus {
+    background: none;
+    outline: 0;
+}
+
+.navbar-toggler span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin: 6px auto;
+    background: #fff;
+    transition: all .6s cubic-bezier(0.250, 0.100, 0.250, 1.000);
+}
+
+.navbar-toggler:hover span,
+.navbar-toggler:focus span {
+    background: #fff;
+}
+
+/* rotate first span */
+.navbar-toggler[aria-expanded="true"] span:first-of-type {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+/* hide second span */
+.navbar-toggler[aria-expanded="true"] span:nth-of-type(2) {
+    opacity: 0;
+}
+
+/* rotate third span */
+.navbar-toggler[aria-expanded="true"] span:last-of-type {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.navbar-toggler[aria-expanded="false"] span {
+    transform: none;
+    opacity: 1;
+}
+
+.navbar-toggler span {
+    display: block;
+    width: 30px;
+    height: 2px;
+    margin: 6px auto;
+    background: #fff;
+    transition: all .6s cubic-bezier(0.250, 0.100, 0.250, 1.000);
+}
+
+/* rotate first span */
+.navbar-toggler[aria-expanded="true"] span:first-of-type {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+/* hide second span */
+.navbar-toggler[aria-expanded="true"] span:nth-of-type(2) {
+    opacity: 0;
+}
+
+/* rotate third span */
+.navbar-toggler[aria-expanded="true"] span:last-of-type {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.navbar-toggler[aria-expanded="false"] span {
+    transform: none;
+    opacity: 1;
+}
+
+/* --------------------Hero section------------------ */
 .img-fluid {
     max-width: 100%;
     height: auto;
@@ -64,9 +152,12 @@ body {
 }
 
 .btn:hover {
-    color: #F1EAFF;
+    background-color: #451952 !important;
+    color: #F1EAFF !important;
+    outline: none !important;
 }
 
+/* ---------------------------Features------------------------ */
 .card {
     border-radius: 8px !important;
     transition: transform 0.3s ease;
@@ -92,6 +183,8 @@ body {
     text-align: justify;
     margin: 0px;
 }
+
+/* -------------------------Footer------------------------ */
 
 .footer {
     background-color: #0D1B2A;
