@@ -5,7 +5,7 @@ const superAdminRoutes = express.Router();
 const SuperAdmin = require("../models/dynamicUsers");
 const DynamicUsersData = require("../models/dynamicUsersData");
 const { connectDB, disconnectDB } = require("../config/db");
-const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
+const { getCurrentDateTime } = require("../utilities/CurrentDate");
 
 // @desc These are Dynamic APIs with only GET, POST, DELETE requests
 // ----------------------------------------------------------------------
@@ -391,16 +391,15 @@ cron.schedule(
     await connectDB();
     try {
       const superAdmins = await SuperAdmin.find();
-      const currentDateIndia = getCurrentDateTimeIndia();
+      const currentDate = getCurrentDateTime();
       const deletedSuperAdmins = [];
-
       // Loop through Super Admins to check for inactivity
       for (const superAdmin of superAdmins) {
         const lastAccessedDate = new Date(superAdmin.lastAccessed);
-        const currentDate = new Date(currentDateIndia);
+        const currentDateTime = new Date(currentDate);
 
         // Calculate the difference in milliseconds
-        const differenceInMs = currentDate - lastAccessedDate;
+        const differenceInMs = currentDateTime - lastAccessedDate;
 
         // Convert milliseconds to days
         const differenceInDays = Math.floor(
@@ -413,14 +412,13 @@ cron.schedule(
         );
 
         console.log(
-          `Inactive from ${superAdmin.lastAccessed} to ${currentDateIndia} for ${differenceInDays} days!`
+          `Inactive from ${superAdmin.lastAccessed} to ${currentDate} for ${differenceInDays} days!`
             .yellow.bgRed.bold.underline
         );
 
         // Check if the Super Admin has been inactive for 28 days
         if (differenceInDays >= 28) {
           deletedSuperAdmins.push(superAdmin);
-
           console.log(
             "\n----------------------------------------------------------"
           );
@@ -450,10 +448,6 @@ cron.schedule(
     } catch (error) {
       console.error("Cron job error:", error);
     }
-  },
-  {
-    scheduled: true,
-    timezone: "Asia/Kolkata",
   }
 );
 
