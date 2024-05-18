@@ -57,15 +57,21 @@ const { getCurrentDateTime } = require("../utilities/CurrentDate");
  *                 superAdmin:
  *                   type: object
  *                   properties:
- *                     _id:
- *                       type: string
- *                       example: 60e88bc894dbef1e6c04f507
  *                     SuperAdminUserName:
  *                       type: string
  *                       example: superadmin1
  *                     SuperAdminName:
  *                       type: string
  *                       example: John Doe
+ *                     lastAccessed:
+ *                       type: string
+ *                       example: 2024-05-18 2:40:35 PM
+ *                     _id:
+ *                       type: string
+ *                       example: 60e88bc894dbef1e6c04f507
+ *                     __v:
+ *                       type: integer
+ *                       example: 0
  *       '400':
  *         description: Invalid request or data
  *         content:
