@@ -267,7 +267,35 @@ userRoutes.get("/users", async (req, res) => {
  *                   type: string
  *                   example: Login successful
  *                 user:
- *                   $ref: '#/components/schemas/User'
+ *                   type: object
+ *                   properties:
+ *                     username:
+ *                       type: string
+ *                       example: michael_johnson
+ *                     email:
+ *                       type: string
+ *                       example: michael@gmail.com
+ *                     name:
+ *                       type: string
+ *                       example: Michael Johnson
+ *                     role:
+ *                       type: string
+ *                       example: user
+ *                     address:
+ *                       type: object
+ *                       properties:
+ *                         street:
+ *                           type: string
+ *                           example: 123 Main St
+ *                         city:
+ *                           type: string
+ *                           example: New York City
+ *                         state:
+ *                           type: string
+ *                           example: New York
+ *                         zipcode:
+ *                           type: string
+ *                           example: 10001
  *       '401':
  *         description: Invalid username or password
  *         content:
