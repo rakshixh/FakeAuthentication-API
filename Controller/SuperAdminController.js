@@ -215,6 +215,12 @@ superAdminRoutes.post("/superAdmin/register", async (req, res) => {
  *                     SuperAdminName:
  *                       type: string
  *                       example: John Doe
+ *                     lastAccessed:
+ *                       type: string
+ *                       example: 2024-05-18 2:40:35 PM
+ *                     __v:
+ *                       type: integer
+ *                       example: 0
  *       '404':
  *         description: Super Admin account not found
  *         content:
