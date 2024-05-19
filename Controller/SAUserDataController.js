@@ -314,37 +314,26 @@ SAUsersDataRoutes.post(
  *                         properties:
  *                           street:
  *                             type: string
- *                             example: 123 Main St
  *                           city:
  *                             type: string
- *                             example: New York
  *                           state:
  *                             type: string
- *                             example: NY
  *                           zipcode:
  *                             type: string
- *                             example: 10001
  *                       _id:
  *                         type: string
- *                         example: 663b19bf4c0f18213033aeb8
  *                       username:
  *                         type: string
- *                         example: user1
  *                       password:
  *                         type: string
- *                         example: userpass@1!
  *                       email:
  *                         type: string
- *                         example: user1@gmail.com
  *                       role:
  *                         type: string
- *                         example: guest
  *                       name:
  *                         type: string
- *                         example: User One
  *                       SuperAdminUserName:
  *                         type: string
- *                         example: superadmin
  *                       __v:
  *                         type: number
  *                         example: 0
