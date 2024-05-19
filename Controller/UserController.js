@@ -111,6 +111,20 @@ userRoutes.get("/allusers", async (req, res) => {
  *                     $ref: '#/components/schemas/User'
  *       '500':
  *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
  */
 
 // Route to get only Guest Users
