@@ -896,7 +896,7 @@ SAUsersDataRoutes.delete(
       });
       await SuperAdmin.findOneAndUpdate(
         { SuperAdminUserName },
-        { lastAccessed: getCurrentDateTimeIndia() }
+        { lastAccessed: getCurrentDateTime() }
       );
 
       res.status(200).json({
