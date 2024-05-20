@@ -797,127 +797,6 @@ SAUsersDataRoutes.put(
 
 /**
  * @swagger
- * /api/dynamicUsers/superAdmin/delete/users/{SuperAdminUserName}/{username}:
- *   delete:
- *     summary: Delete a specified user created by a specified Super Admin
- *     tags: [Dynamic Users - Super Admin's Users]
- *     parameters:
- *       - in: path
- *         name: SuperAdminUserName
- *         required: true
- *         description: Username of the Super Admin who created the user
- *         schema:
- *           type: string
- *           example: superadmin
- *       - in: path
- *         name: username
- *         required: true
- *         description: Username of the user to be deleted
- *         schema:
- *           type: string
- *           example: user1
- *     responses:
- *       '200':
- *         description: Specified User of a specified Super Admin deleted successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 statusCode:
- *                   type: integer
- *                   example: 200
- *                 status:
- *                   type: boolean
- *                   example: true
- *                 message:
- *                   type: string
- *                   example: Specified User of a specified Super Admin deleted successfully
- *       '404':
- *         description: User not found or not created by the specified Super Admin
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 statusCode:
- *                   type: integer
- *                   example: 404
- *                 status:
- *                   type: boolean
- *                   example: false
- *                 message:
- *                   type: string
- *                   example: User not found or not created by the specified Super Admin
- *       '500':
- *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 statusCode:
- *                   type: integer
- *                   example: 500
- *                 status:
- *                   type: boolean
- *                   example: false
- *                 message:
- *                   type: string
- *                   example: Internal server error
- */
-
-// Route to DELETE the user created by the Super Admin
-SAUsersDataRoutes.delete(
-  "/superAdmin/delete/users/:SuperAdminUserName/:username",
-  async (req, res) => {
-    await connectDB();
-    try {
-      const { SuperAdminUserName, username } = req.params;
-
-      // Check if the user exists and was created by the specified Super Admin
-      const user = await DynamicUsersData.findOne({
-        username,
-        SuperAdminUserName,
-      });
-      if (!user) {
-        disconnectDB();
-        return res.status(200).json({
-          statusCode: 404,
-          status: false,
-          message: "User not found or not created by the specified Super Admin",
-        });
-      }
-
-      // Delete the user
-      await DynamicUsersData.findOneAndDelete({
-        username,
-        SuperAdminUserName,
-      });
-      await SuperAdmin.findOneAndUpdate(
-        { SuperAdminUserName },
-        { lastAccessed: getCurrentDateTime() }
-      );
-
-      res.status(200).json({
-        statusCode: 200,
-        status: true,
-        message:
-          "Specified User of a specified Super Admin deleted successfully",
-      });
-      disconnectDB();
-    } catch (error) {
-      res.status(200).json({
-        statusCode: 500,
-        status: false,
-        message: "Internal server error",
-      });
-    }
-  }
-);
-
-/**
- * @swagger
  * /api/dynamicUsers/superAdmin/login/users/{SuperAdminUserName}:
  *   post:
  *     summary: Login user created by the Super Admin
@@ -1100,6 +979,127 @@ SAUsersDataRoutes.post(
       disconnectDB();
     } catch (error) {
       disconnectDB();
+      res.status(200).json({
+        statusCode: 500,
+        status: false,
+        message: "Internal server error",
+      });
+    }
+  }
+);
+
+/**
+ * @swagger
+ * /api/dynamicUsers/superAdmin/delete/users/{SuperAdminUserName}/{username}:
+ *   delete:
+ *     summary: Delete a specified user created by a specified Super Admin
+ *     tags: [Dynamic Users - Super Admin's Users]
+ *     parameters:
+ *       - in: path
+ *         name: SuperAdminUserName
+ *         required: true
+ *         description: Username of the Super Admin who created the user
+ *         schema:
+ *           type: string
+ *           example: superadmin
+ *       - in: path
+ *         name: username
+ *         required: true
+ *         description: Username of the user to be deleted
+ *         schema:
+ *           type: string
+ *           example: user1
+ *     responses:
+ *       '200':
+ *         description: Specified User of a specified Super Admin deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 200
+ *                 status:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: Specified User of a specified Super Admin deleted successfully
+ *       '404':
+ *         description: User not found or not created by the specified Super Admin
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 404
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: User not found or not created by the specified Super Admin
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 statusCode:
+ *                   type: integer
+ *                   example: 500
+ *                 status:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: Internal server error
+ */
+
+// Route to DELETE the user created by the Super Admin
+SAUsersDataRoutes.delete(
+  "/superAdmin/delete/users/:SuperAdminUserName/:username",
+  async (req, res) => {
+    await connectDB();
+    try {
+      const { SuperAdminUserName, username } = req.params;
+
+      // Check if the user exists and was created by the specified Super Admin
+      const user = await DynamicUsersData.findOne({
+        username,
+        SuperAdminUserName,
+      });
+      if (!user) {
+        disconnectDB();
+        return res.status(200).json({
+          statusCode: 404,
+          status: false,
+          message: "User not found or not created by the specified Super Admin",
+        });
+      }
+
+      // Delete the user
+      await DynamicUsersData.findOneAndDelete({
+        username,
+        SuperAdminUserName,
+      });
+      await SuperAdmin.findOneAndUpdate(
+        { SuperAdminUserName },
+        { lastAccessed: getCurrentDateTime() }
+      );
+
+      res.status(200).json({
+        statusCode: 200,
+        status: true,
+        message:
+          "Specified User of a specified Super Admin deleted successfully",
+      });
+      disconnectDB();
+    } catch (error) {
       res.status(200).json({
         statusCode: 500,
         status: false,
