@@ -3,7 +3,7 @@ const SAUsersDataRoutes = express.Router();
 const SuperAdmin = require("../models/dynamicUsers");
 const DynamicUsersData = require("../models/dynamicUsersData");
 const { connectDB, disconnectDB } = require("../config/db");
-const { getCurrentDateTimeIndia } = require("../utilities/CurrentDate");
+const { getCurrentDateTime } = require("../utilities/CurrentDate");
 
 // @desc These are Dynamic APIs with only GET, POST, PUT, DELETE requests
 // ----------------------------------------------------------------------
@@ -186,8 +186,7 @@ SAUsersDataRoutes.post(
       const superAdmin = await SuperAdmin.findOne({ SuperAdminUserName });
 
       if (!superAdmin) {
-        disconnectDB();
-        return res.status(200).json({
+        return res.status(404).json({
           statusCode: 404,
           status: false,
           message: "Super Admin account not found",
@@ -199,8 +198,7 @@ SAUsersDataRoutes.post(
 
       // Validate username format
       if (!/^[a-z0-9_.]+$/.test(username)) {
-        disconnectDB();
-        return res.status(200).json({
+        return res.status(400).json({
           statusCode: 400,
           status: false,
           message:
@@ -208,22 +206,26 @@ SAUsersDataRoutes.post(
         });
       }
 
-      // Check if username is already taken
-      const existingUser = await DynamicUsersData.findOne({ username });
+      // Check if username is already taken under the same SuperAdmin
+      const existingUser = await DynamicUsersData.findOne({
+        username,
+        SuperAdminUserName,
+      });
       if (existingUser) {
-        disconnectDB();
-        return res.status(200).json({
+        return res.status(400).json({
           statusCode: 400,
           status: false,
           message: "Username is already taken",
         });
       }
 
-      // Check if email is already registered
-      const existingEmail = await DynamicUsersData.findOne({ email });
+      // Check if email is already registered under the same SuperAdmin
+      const existingEmail = await DynamicUsersData.findOne({
+        email,
+        SuperAdminUserName,
+      });
       if (existingEmail) {
-        disconnectDB();
-        return res.status(200).json({
+        return res.status(400).json({
           statusCode: 400,
           status: false,
           message: "Email is already registered",
@@ -235,7 +237,6 @@ SAUsersDataRoutes.post(
         SuperAdminUserName,
       });
       if (userCount >= 15) {
-        disconnectDB();
         return res.status(400).json({
           statusCode: 400,
           status: false,
@@ -253,7 +254,7 @@ SAUsersDataRoutes.post(
       const createUser = await DynamicUsersData.create(userDataWithSuperAdmin);
       await SuperAdmin.findOneAndUpdate(
         { SuperAdminUserName },
-        { lastAccessed: getCurrentDateTimeIndia() }
+        { lastAccessed: getCurrentDateTime() }
       );
 
       res.status(200).json({
@@ -262,13 +263,15 @@ SAUsersDataRoutes.post(
         message: `${SuperAdminUserName} created a new user account successfully`,
         user: createUser,
       });
-      disconnectDB();
     } catch (error) {
-      res.status(200).json({
+      console.error("Error during user registration:", error); // Log the error for debugging
+      res.status(500).json({
         statusCode: 500,
         status: false,
         message: "Internal server error",
       });
+    } finally {
+      disconnectDB();
     }
   }
 );
