@@ -393,6 +393,10 @@ SAUsersDataRoutes.get(
       }
 
       const users = await DynamicUsersData.find({ SuperAdminUserName });
+      await SuperAdmin.findOneAndUpdate(
+        { SuperAdminUserName },
+        { lastAccessed: getCurrentDateTime() }
+      );
       res.status(200).json({
         statusCode: 200,
         status: true,
@@ -970,6 +974,11 @@ SAUsersDataRoutes.post(
       }
 
       // User found and password matched, send success response
+      await SuperAdmin.findOneAndUpdate(
+        { SuperAdminUserName },
+        { lastAccessed: getCurrentDateTime() }
+      );
+
       res.status(200).json({
         statusCode: 200,
         status: true,
@@ -1087,6 +1096,7 @@ SAUsersDataRoutes.delete(
         username,
         SuperAdminUserName,
       });
+
       await SuperAdmin.findOneAndUpdate(
         { SuperAdminUserName },
         { lastAccessed: getCurrentDateTime() }
