@@ -23,6 +23,10 @@ This project includes Swagger, a powerful tool for understanding each and every 
 > End point for Swagger Documentation `/api/api-docs`.<br>
 > You can explore Swagger Documentation at [Fake Authentication API's Swagger Documentation](https://fakeauthentication-api.onrender.com/api/api-docs/).
 
+<h2>✴️ Important Note </h2>
+
+After creating `superadmin` account if it is inactive for `28 days` then superadmin account along with it's all associated data will be deleted.
+
 <h2>⚙️ Local Setup</h2>
 
 ### Step 1
