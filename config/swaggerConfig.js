@@ -124,13 +124,46 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const swaggerServe = swaggerUi.serve;
 
-// Use CDN for Swagger UI assets - fixes issues on Vercel and Render
-const swaggerSetup = swaggerUi.setup(swaggerDocs, {
-  customCssUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
-  customJs:
-    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js",
-});
+// Custom HTML for Vercel - loads CSS/JS from CDN properly
+const swaggerSetup = (req, res, next) => {
+  const html = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Swagger UI</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css">
+        <style>
+          html{ box-sizing: border-box; overflow: -moz-scrollbars-vertical; overflow-y: scroll; }
+          *, *:before, *:after { box-sizing: inherit; }
+          body { margin:0; padding:0; }
+        </style>
+      </head>
+      <body>
+        <div id="swagger-ui"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js"></script>
+        <script>
+          SwaggerUIBundle({
+            url: "/api/swagger.json",
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+              SwaggerUIBundle.presets.apis,
+              SwaggerUIStandalonePreset
+            ],
+            plugins: [
+              SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            layout: "StandaloneLayout"
+          });
+        </script>
+      </body>
+    </html>
+  `;
+  res.send(html);
+};
 
 module.exports = {
   swaggerServe,
