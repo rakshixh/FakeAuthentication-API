@@ -8,7 +8,11 @@ const dotenv = require("dotenv").config();
 const cron = require("node-cron");
 const axios = require("axios");
 const { connectDB, disconnectDB } = require("./config/db");
-const { swaggerServe, swaggerSetup } = require("./config/swaggerConfig");
+const {
+  swaggerServe,
+  swaggerSetup,
+  swaggerDocs,
+} = require("./config/swaggerConfig");
 
 // Define base URLs for both localhost and hosted server
 const PORT = process.env.PORT || 5000;
@@ -33,7 +37,7 @@ const OpenAndCloseConnection = async () => {
     console.log("--------------------------------------------");
     console.log("28 DAYS OVER!");
     console.log(
-      "Making connection to the database to keep the cluster running!"
+      "Making connection to the database to keep the cluster running!",
     );
     console.log("-------------------------------------------- \n \n");
     setTimeout(async () => {
@@ -58,12 +62,12 @@ cron.schedule(
   {
     scheduled: true,
     timezone: "Asia/Kolkata",
-  }
+  },
 );
 
 // Schedule a job to make a request to the server every 5 minutes
 const KeepActivityConnection =
-  "https://fakeauthentication-api.onrender.com/api";
+  "https://fake-authentication-api.vercel.app/api";
 cron.schedule(
   "*/9 * * * *",
   async () => {
@@ -71,7 +75,7 @@ cron.schedule(
       // Make a request to the root endpoint to keep the server active
       const response = await axios.get(`${KeepActivityConnection}`);
       console.log(
-        `\nRequest to server made to keep it active. \nResponse:${response.data}\n`
+        `\nRequest to server made to keep it active. \nResponse:${response.data}\n`,
       );
     } catch (error) {
       console.error("Error making request:", error.message);
@@ -80,7 +84,7 @@ cron.schedule(
   {
     scheduled: true,
     timezone: "Asia/Kolkata",
-  }
+  },
 );
 
 // Route to serve the website
@@ -93,6 +97,12 @@ app.get("/api", (req, res) => {
 
 const routes = require("./Routes/Routes");
 app.use("/api", routes);
+
+// Serve Swagger JSON for CDN loading
+app.get("/api/swagger.json", (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+  res.send(swaggerDocs);
+});
 
 //Swagger serve route
 app.use("/api/api-docs", swaggerServe, swaggerSetup);

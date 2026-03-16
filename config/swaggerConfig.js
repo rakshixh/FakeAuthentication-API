@@ -4,7 +4,7 @@ const swaggerUi = require("swagger-ui-express");
 // Define base URLs for both localhost and hosted server
 const PORT = process.env.PORT || 5000;
 const localhostURL = `http://localhost:${PORT}`;
-const hostedURL = "https://fakeauthentication-api.onrender.com/";
+const hostedURL = "https://fake-authentication-api.vercel.app/";
 
 // Swagger definition for OAS 3
 const swaggerOptions = {
@@ -123,9 +123,21 @@ const swaggerOptions = {
 // Swagger serve and setup
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 const swaggerServe = swaggerUi.serve;
-const swaggerSetup = swaggerUi.setup(swaggerDocs);
+
+// Use CDN for Swagger UI assets - fixes issues on Vercel and Render
+const swaggerSetup = swaggerUi.setup(swaggerDocs, {
+  swaggerOptions: {
+    url: "/api/swagger.json",
+  },
+  customCss:
+    "@import url('https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css');",
+  customJs:
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js",
+  swaggerUrl: "/api/swagger.json",
+});
 
 module.exports = {
   swaggerServe,
   swaggerSetup,
+  swaggerDocs,
 };
