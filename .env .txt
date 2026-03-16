@@ -1,2 +1,2 @@
-MONGO_URI = <Add mongodb database URL>
-PORT = 5000
+MONGO_URI=<Add mongodb database URL>
+PORT=5000
