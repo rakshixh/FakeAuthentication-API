@@ -126,14 +126,10 @@ const swaggerServe = swaggerUi.serve;
 
 // Use CDN for Swagger UI assets - fixes issues on Vercel and Render
 const swaggerSetup = swaggerUi.setup(swaggerDocs, {
-  swaggerOptions: {
-    url: "/api/swagger.json",
-  },
-  customCss:
-    "@import url('https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css');",
+  customCssUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
   customJs:
     "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js",
-  swaggerUrl: "/api/swagger.json",
 });
 
 module.exports = {
