@@ -18,7 +18,6 @@ const swaggerOptions = {
       contact: {
         name: "Rakshith Acharya",
         url: "https://github.com/rakshixh",
-        email: "rakshixh.socials@gmail.com",
       },
       license: {
         name: "MIT",
